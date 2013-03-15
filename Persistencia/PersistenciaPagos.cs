@@ -78,7 +78,8 @@ namespace Persistencia
         {
             try
             {
-                IPersistenciaPrestamo persPrestamo = FabricaPersistencia.getPersistenciaPrestamo();
+                FabricaPersistencia fp = new FabricaPersistencia();
+                IPersistenciaPrestamo persPrestamo = fp.getPersistenciaPrestamo();
                 //Busco los prestamos que aun no han sido cancelados
                 List<Prestamo> prestamosCancelados = persPrestamo.ListarPrestamos(s, false);
 

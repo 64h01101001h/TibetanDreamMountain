@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A9672D4B-2190-4037-B4DC-7AC5D8B3627A}</ProjectGuid>
+    <ProjectGuid>{54774C2A-AEF4-46B5-8DEB-ADCEC677D257}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logica</RootNamespace>
-    <AssemblyName>Logica</AssemblyName>
+    <RootNamespace>CommServicioRemoting</RootNamespace>
+    <AssemblyName>CommServicioRemoting</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,32 +33,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILogicaSucursal.cs" />
-    <Compile Include="ILogicaPrestamo.cs" />
-    <Compile Include="ILogicaPagos.cs" />
-    <Compile Include="ILogicaCuentas.cs" />
-    <Compile Include="ILogicaCotizacion.cs" />
-    <Compile Include="ILogicaUsuarios.cs" />
-    <Compile Include="LogicaPagos.cs" />
-    <Compile Include="LogicaPrestamo.cs" />
-    <Compile Include="LogicaCotizacion.cs" />
-    <Compile Include="LogicaCuentas.cs" />
-    <Compile Include="FabricaLogica.cs" />
-    <Compile Include="LogicaSucursal.cs" />
-    <Compile Include="LogicaUsuarios.cs" />
+    <Compile Include="Servicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommServicioRemoting\CommServicioRemoting.csproj">
-      <Project>{54774C2A-AEF4-46B5-8DEB-ADCEC677D257}</Project>
-      <Name>CommServicioRemoting</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{ADCDD125-1B3A-4F63-AA9D-936983889A1B}</Project>
       <Name>Entidades</Name>
@@ -66,6 +54,10 @@
     <ProjectReference Include="..\ExcepcionesPersonalizadas\ExcepcionesPersonalizadas.csproj">
       <Project>{B188EAE8-5882-4E0D-BD33-C22332E164BF}</Project>
       <Name>ExcepcionesPersonalizadas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{28675E2C-8EE4-431D-ADD9-70B31FF3C6A2}</Project>
+      <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
