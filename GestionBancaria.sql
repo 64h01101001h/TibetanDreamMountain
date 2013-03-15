@@ -1000,15 +1000,15 @@ begin
 	declare @Retiros as int
 	declare @ArqueoTotal as int
 	declare @Sucursal as int
-	
+
 	set @Sucursal = (select Empleado.IdSucursal from Empleado where Empleado.IdUsuario=@IdEmpleado)
 	
-	set @Pagos = (select SUM(Pagos.Monto) from Pagos inner join Prestamo on Prestamo.IdPrestamo=Pagos.IdPrestamo where Prestamo.Moneda=@Moneda and Pagos.Fecha = @Fecha and Pagos.NumeroSucursal=@Sucursal and Pagos.IdEmpleado=@IdEmpleado)
-	set @Depositos = (select SUM(Movimiento.Monto) from Movimiento where Movimiento.Fecha = @Fecha and Movimiento.Tipo=0 and Movimiento.Moneda=@Moneda and Movimiento.IdSucursal=@Sucursal and Movimiento.CiUsuario=@IdEmpleado)
-	set @Retiros = (select SUM(Movimiento.Monto) from Movimiento where Movimiento.Fecha = @Fecha and Movimiento.Tipo = 1 and Movimiento.Moneda=@Moneda and Movimiento.IdSucursal=@Sucursal and Movimiento.CiUsuario=@IdEmpleado)
-	set @ArqueoTotal = @Pagos+@Depositos-@Retiros --resto los retiros, sumo pagos y depositos.
+    set @Pagos = (select SUM(Pagos.Monto) from Pagos inner join Prestamo on Prestamo.IdPrestamo=Pagos.IdPrestamo where Prestamo.Moneda=@Moneda and CAST (Pagos.Fecha as date) = CAST (@Fecha as date) and Pagos.NumeroSucursal=@Sucursal and Pagos.IdEmpleado=@IdEmpleado)
+	set @Depositos = (select SUM(Movimiento.Monto) from Movimiento where CAST (Movimiento.Fecha as date) = CAST (@Fecha as date) and Movimiento.Tipo = 2 and Movimiento.Moneda=@Moneda and Movimiento.IdSucursal=@Sucursal and Movimiento.CiUsuario=@IdEmpleado)
+	set @Retiros = (select SUM(Movimiento.Monto) from Movimiento where CAST (Movimiento.Fecha as date) = CAST (@Fecha as date) and Movimiento.Tipo = 1 and Movimiento.Moneda=@Moneda and Movimiento.IdSucursal=@Sucursal and Movimiento.CiUsuario=@IdEmpleado)
+	set @ArqueoTotal = ISNULL(@Pagos,0)+ ISNULL(@Depositos,0)-ISNULL(@Retiros,0) --resto los retiros, sumo pagos y depositos.
 	
-	return @ArqueoTotal  --devuelvo el resultado.
+	select @ArqueoTotal  --devuelvo el resultado.
 
 end
 GO
@@ -1245,6 +1245,19 @@ exec AltaPago @Fecha='01/02/1981', @Monto=1000, @NumeroSucursal=1, @IdEmpleado =
 EXEC AltaPrestamo @NumeroSucursal = 1,@IdCliente = 3446586,@Fecha = '01/01/2013',@Cuotas = 5,@Moneda = 'USD',@Monto = 200
 EXEC AltaPago @IdEmpleado = 1234567, @IdPrestamo = 2, @NumeroSucursal = 1, @Monto = 40, @Fecha = '12/01/2013'
 
+insert into Cuenta(IdCliente,IdSucursal,Moneda,Saldo,FechaApertura) 
+				values(3446586,1,'UYU',1234,'2013-03-15 11:01:00.000')
+
+exec AltaMovimiento  @IdSucursal=1, @Tipo=2, 
+		@Fecha = '2013-03-15 11:01:00.000' , @Moneda='UYU', @ViaWeb = 0, 
+		@Monto = 1234, @CiUsuario = 1234567, @IdCuenta = 1
+
+select * from Cuenta
+
+exec spArqueoCaja @Fecha='2013-03-15 11:20:00.000', @Moneda='UYU', @IdEmpleado = 1234567
+
+	
+select * from Movimiento
 --exec spListarUltimosPagos 1
 
 select * from Pagos
@@ -1252,6 +1265,7 @@ select * from Cliente
 select * from Sucursal
 select * from Usuario
 select * from Prestamo
+select * from Cuenta
 
 
 

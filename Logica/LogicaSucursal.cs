@@ -118,8 +118,8 @@ namespace Logica
                 //PersistenciaSucursal ps = new PersistenciaSucursal();
                 IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
 
-                // ps.ArqueoCaja(DateTime.Now,"USD",e);
-                // ps.ArqueoCaja(DateTime.Now,"UYU",e);
+                saldoCajaDolares = ps.ArqueoCaja(DateTime.Now,"USD",e);
+                saldoCajaPesos = ps.ArqueoCaja(DateTime.Now,"UYU",e);
 
                 ps.TotalesArqueoCaja(e, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);
             }
