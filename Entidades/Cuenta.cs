@@ -49,5 +49,17 @@ namespace Entidades
             }
         }
 
+        public string CLIENTETOSTRING
+        {
+            get
+            {
+                return CLIENTE.TOSTRING;
+            }
+            set
+            {
+
+            }
+        }
+
     }
 }

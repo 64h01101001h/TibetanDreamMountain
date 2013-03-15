@@ -49,8 +49,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lvCuentas = new System.Windows.Forms.DataGridView();
-            this.CuentasbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuentasbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CuentaCol = new System.Windows.Forms.DataGridViewLinkColumn();
             this.ClienteCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaldoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -259,16 +260,23 @@
             this.lvCuentas.TabIndex = 0;
             this.lvCuentas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lvCuentas_CellClick);
             // 
-            // CuentasbindingSource
-            // 
-            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWS.Cuenta);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn1.DataPropertyName = "CLIENTE";
             this.dataGridViewTextBoxColumn1.HeaderText = "Cliente";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "CLIENTE";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // CuentasbindingSource
+            // 
+            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Cuenta);
             // 
             // CuentaCol
             // 
@@ -282,7 +290,7 @@
             // ClienteCol
             // 
             this.ClienteCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ClienteCol.DataPropertyName = "CLIENTE";
+            this.ClienteCol.DataPropertyName = "CLIENTETOSTRING";
             this.ClienteCol.HeaderText = "Cliente";
             this.ClienteCol.Name = "ClienteCol";
             this.ClienteCol.ReadOnly = true;
@@ -353,5 +361,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ClienteCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaldoCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn MonedaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

@@ -125,6 +125,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MOVIMIENTOSCUENTA" type="tns:ArrayOfMovimiento" />
           <s:element minOccurs="1" maxOccurs="1" name="FECHAAPERTURA" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="TOSTRING" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CLIENTETOSTRING" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfMovimiento">

@@ -1753,6 +1753,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private string tOSTRINGField;
         
+        private string cLIENTETOSTRINGField;
+        
         /// <comentarios/>
         public int IDCUENTA {
             get {
@@ -1830,6 +1832,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.tOSTRINGField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string CLIENTETOSTRING {
+            get {
+                return this.cLIENTETOSTRINGField;
+            }
+            set {
+                this.cLIENTETOSTRINGField = value;
             }
         }
     }
