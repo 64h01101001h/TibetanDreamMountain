@@ -43,10 +43,10 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.lblHeader = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lvPrestamosAtrasados = new System.Windows.Forms.DataGridView();
-            this.lblInfo = new System.Windows.Forms.Label();
             this.PrestamosbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDPRESTAMODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.cLIENTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -187,6 +187,14 @@
             this.panel2.Size = new System.Drawing.Size(642, 47);
             this.panel2.TabIndex = 1;
             // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(7, 7);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblInfo.TabIndex = 1;
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Dock = System.Windows.Forms.DockStyle.Right;
@@ -227,17 +235,9 @@
             this.lvPrestamosAtrasados.Size = new System.Drawing.Size(642, 266);
             this.lvPrestamosAtrasados.TabIndex = 0;
             // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(7, 7);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(0, 13);
-            this.lblInfo.TabIndex = 1;
-            // 
             // PrestamosbindingSource
             // 
-            this.PrestamosbindingSource.DataSource = typeof(GestionBancariaWS.Prestamo);
+            this.PrestamosbindingSource.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Prestamo);
             // 
             // iDPRESTAMODataGridViewTextBoxColumn
             // 
@@ -251,7 +251,7 @@
             // cLIENTEDataGridViewTextBoxColumn
             // 
             this.cLIENTEDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cLIENTEDataGridViewTextBoxColumn.DataPropertyName = "CLIENTE";
+            this.cLIENTEDataGridViewTextBoxColumn.DataPropertyName = "CLIENTETOSTRING";
             this.cLIENTEDataGridViewTextBoxColumn.HeaderText = "Cliente";
             this.cLIENTEDataGridViewTextBoxColumn.Name = "cLIENTEDataGridViewTextBoxColumn";
             this.cLIENTEDataGridViewTextBoxColumn.ReadOnly = true;

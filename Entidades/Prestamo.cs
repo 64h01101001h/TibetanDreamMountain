@@ -29,5 +29,17 @@ namespace Entidades
 
         private Cliente _cliente;
         public Cliente CLIENTE { get; set; }
+
+        public string CLIENTETOSTRING
+        {
+            get
+            {
+                return CLIENTE.TOSTRING;
+            }
+            set
+            {
+
+            }
+        }
     }
 }

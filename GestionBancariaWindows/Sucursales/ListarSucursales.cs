@@ -77,7 +77,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvSucursales.Rows.Clear();
+                //lvSucursales.Rows.Clear();
 
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 Sucursal[] clientes = serv.ListarSucursales();

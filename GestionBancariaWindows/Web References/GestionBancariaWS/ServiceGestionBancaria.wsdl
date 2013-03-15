@@ -170,6 +170,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MONEDA" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="MONTO" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="CLIENTE" type="tns:Cliente" />
+          <s:element minOccurs="0" maxOccurs="1" name="CLIENTETOSTRING" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="BuscarUsuarioPorCi">

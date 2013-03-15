@@ -2091,6 +2091,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private Cliente cLIENTEField;
         
+        private string cLIENTETOSTRINGField;
+        
         /// <comentarios/>
         public int IDPRESTAMO {
             get {
@@ -2168,6 +2170,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.cLIENTEField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string CLIENTETOSTRING {
+            get {
+                return this.cLIENTETOSTRINGField;
+            }
+            set {
+                this.cLIENTETOSTRINGField = value;
             }
         }
     }
