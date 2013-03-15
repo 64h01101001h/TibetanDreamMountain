@@ -10,7 +10,7 @@ namespace Logica
     internal class LogicaPagos : ILogicaPagos
     {
 
-         //singleton
+        //singleton
         //------------------------------------------------
         private static LogicaPagos _instancia = null;
         private LogicaPagos() { }
@@ -24,14 +24,16 @@ namespace Logica
         }
 
 
-        public void PagarCuota(Prestamo p)
+        public void PagarCuota(Prestamo p, Empleado e)
         {
             try
             {
-               // PersistenciaPrestamo persPrestamo = new PersistenciaPrestamo();
-                IPersistenciaPagos persPrestamo = FabricaPersistencia.getPersistenciaPagos();
-                //persPrestamo.
-                //persPrestamo.
+                //ILogicaPrestamo logPres = FabricaLogica.getLogicaPrestamo();
+                //Prestamo pe = logPres.IsPrestamoCancelado(p);
+
+                IPersistenciaPrestamo persPrestamo = FabricaPersistencia.getPersistenciaPrestamo();
+                persPrestamo.PagarPrestamo(p, e);
+
             }
             catch (Exception ex)
             {
@@ -43,11 +45,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPagos ps = new PersistenciaPagos();
                 IPersistenciaPagos ps = FabricaPersistencia.getPersistenciaPagos();
 
                 return ps.ListarTodosPagosPrestamo(p);
-                //return null;
             }
             catch (Exception ex)
             {

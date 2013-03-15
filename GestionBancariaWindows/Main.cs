@@ -95,6 +95,7 @@ namespace GestionBancariaWindows
         private void pagoCuotaToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             PagoCuota pagoCuotaForm = new PagoCuota();
+            pagoCuotaForm.EMPLEADO = EMPLEADO;
             pagoCuotaForm.Show();
         }
 

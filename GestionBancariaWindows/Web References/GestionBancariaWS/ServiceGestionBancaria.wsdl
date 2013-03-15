@@ -401,6 +401,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="p" type="tns:Prestamo" />
+            <s:element minOccurs="0" maxOccurs="1" name="e" type="tns:Empleado" />
           </s:sequence>
         </s:complexType>
       </s:element>

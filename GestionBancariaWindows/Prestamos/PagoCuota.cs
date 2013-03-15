@@ -14,7 +14,7 @@ namespace GestionBancariaWindows
         }
 
         public Prestamo PRESTAMO { get; set; }
-
+        public Empleado EMPLEADO { get; set; }
 
         private void PagoCuota_Load(object sender, System.EventArgs e)
         {
@@ -93,7 +93,7 @@ namespace GestionBancariaWindows
                 {
                     ServiceGestionBancaria serv = new ServiceGestionBancaria();
 
-                    serv.PagarCuota(PRESTAMO);
+                    serv.PagarCuota(PRESTAMO,EMPLEADO);
 
                     lblInfo.Text = "Cuota pagada correctamente";
                     LimpiarFormulario();

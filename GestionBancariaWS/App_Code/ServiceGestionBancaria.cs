@@ -450,13 +450,13 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
 
     #region Procedimientos Pagos
     [WebMethod]
-    public void PagarCuota(Prestamo p)
+    public void PagarCuota(Prestamo p, Empleado e)
     {
         try
         {
             ILogicaPagos lc = FabricaLogica.getLogicaPagos();
 
-            lc.PagarCuota(p);
+            lc.PagarCuota(p,e);
         }
         catch (Exception ex)
         {

@@ -923,23 +923,25 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ServiceGestionBancaria.org/PagarCuota", RequestNamespace="http://ServiceGestionBancaria.org/", ResponseNamespace="http://ServiceGestionBancaria.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void PagarCuota(Prestamo p) {
+        public void PagarCuota(Prestamo p, Empleado e) {
             this.Invoke("PagarCuota", new object[] {
-                        p});
+                        p,
+                        e});
         }
         
         /// <remarks/>
-        public void PagarCuotaAsync(Prestamo p) {
-            this.PagarCuotaAsync(p, null);
+        public void PagarCuotaAsync(Prestamo p, Empleado e) {
+            this.PagarCuotaAsync(p, e, null);
         }
         
         /// <remarks/>
-        public void PagarCuotaAsync(Prestamo p, object userState) {
+        public void PagarCuotaAsync(Prestamo p, Empleado e, object userState) {
             if ((this.PagarCuotaOperationCompleted == null)) {
                 this.PagarCuotaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPagarCuotaOperationCompleted);
             }
             this.InvokeAsync("PagarCuota", new object[] {
-                        p}, this.PagarCuotaOperationCompleted, userState);
+                        p,
+                        e}, this.PagarCuotaOperationCompleted, userState);
         }
         
         private void OnPagarCuotaOperationCompleted(object arg) {

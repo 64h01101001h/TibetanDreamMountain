@@ -13,6 +13,6 @@ namespace Persistencia
         void CancelarPrestamo(Prestamo P);
         List<Prestamo> ListarPrestamos(Sucursal s, bool cancelado);
         Prestamo BuscarPrestamo(Prestamo P);
-
+        void PagarPrestamo(Prestamo P, Empleado E);
     }
 }

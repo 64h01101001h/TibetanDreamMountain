@@ -9,7 +9,7 @@ namespace Logica
 {
     internal class LogicaPrestamo : ILogicaPrestamo
     {
-         //singleton
+        //singleton
         //------------------------------------------------
         private static LogicaPrestamo _instancia = null;
         private LogicaPrestamo() { }
@@ -106,7 +106,7 @@ namespace Logica
                 //PersistenciaPrestamo pc = new PersistenciaPrestamo();
                 IPersistenciaPrestamo pp = FabricaPersistencia.getPersistenciaPrestamo();
 
-                 pp.AltaPrestamo(p);
+                pp.AltaPrestamo(p);
             }
             catch (Exception ex)
             {
@@ -144,32 +144,34 @@ namespace Logica
             }
         }
 
-     
+
         public List<Pago> IsPrestamoCancelado(ref Prestamo p)
         {
             try
             {
-                //LogicaPagos lp = new LogicaPagos();
-                ILogicaPagos lp = FabricaLogica.getLogicaPagos();
-                List<Pago> pagos = lp.ListarPagos(p);
-
-                if (pagos.Count == p.TOTALCUOTAS)
+                p = BuscarPrestamo(p);
+                if (p != null)
                 {
-                    p.CANCELADO = true;
-                }
-                else
-                {
-                    p.CANCELADO = false;
-                }
-               
-                return pagos;
+                    ILogicaPagos lp = FabricaLogica.getLogicaPagos();
+                    List<Pago> pagos = lp.ListarPagos(p);
 
+                    if (pagos.Count >= p.TOTALCUOTAS)
+                    {
+                        p.CANCELADO = true;
+                    }
+                    else
+                    {
+                        p.CANCELADO = false;
+                    }
+
+                    return pagos;
+                }
+                return null;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
     }
 }

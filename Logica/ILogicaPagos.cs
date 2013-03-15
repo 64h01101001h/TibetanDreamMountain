@@ -8,7 +8,7 @@ namespace Logica
 {
     public interface ILogicaPagos
     {
-         void PagarCuota(Prestamo p);
+        void PagarCuota(Prestamo p, Empleado e);
          List<Pago> ListarPagos(Prestamo p);
          //void EliminarPago(Pago p);
          //Pago BuscarPago(Pago p);

@@ -81,7 +81,7 @@ namespace Persistencia
 
                 SqlCommand cmd = Conexion.GetCommand("CancelarPrestamo", conexion, CommandType.StoredProcedure);
 
-                SqlParameter _IdSucursal = new SqlParameter("@IdSucursal", P.SUCURSAL);
+                SqlParameter _IdSucursal = new SqlParameter("@IdSucursal", P.SUCURSAL.IDSUCURSAL);
                 SqlParameter _IdPrestamo = new SqlParameter("@NumeroPrestamo", P.IDPRESTAMO);
                 SqlParameter _retorno = new SqlParameter("@Mont", SqlDbType.Int);
                 _retorno.Direction = ParameterDirection.ReturnValue;
@@ -123,12 +123,8 @@ namespace Persistencia
             {
 
                 SqlCommand cmd = Conexion.GetCommand("AltaPago", conexion, CommandType.StoredProcedure);
-/*@IdEmpleado int,
-@IdPrestamo int,
-@NumeroSucursal int,
-@Monto float,
-@Fecha datetime*/
-                SqlParameter _IdSucursal = new SqlParameter("@IdEmpleado", E.CI);
+                SqlParameter _IdSucursal = new SqlParameter("@NumeroSucursal", P.SUCURSAL.IDSUCURSAL);
+                SqlParameter _IdEmpleado = new SqlParameter("@IdEmpleado", E.CI);
                 SqlParameter _IdPrestamo = new SqlParameter("@IdPrestamo", P.IDPRESTAMO);
                 SqlParameter _Monto = new SqlParameter("@Monto",P.MONTO);
                 SqlParameter _Fecha = new SqlParameter("@Fecha",DateTime.Now);
@@ -136,6 +132,7 @@ namespace Persistencia
                 _retorno.Direction = ParameterDirection.ReturnValue;
 
                 cmd.Parameters.Add(_IdSucursal);
+                cmd.Parameters.Add(_IdEmpleado);
                 cmd.Parameters.Add(_IdPrestamo);
                 cmd.Parameters.Add(_Monto);
                 cmd.Parameters.Add(_Fecha);

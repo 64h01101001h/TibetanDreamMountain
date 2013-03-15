@@ -106,13 +106,63 @@ namespace Persistencia
             try
             {
                 List<Pago> pagos = new List<Pago>();
-                return pagos;
+
+                SqlConnection conexion = new SqlConnection(Conexion.Cnn);
+                SqlCommand cmd = Conexion.GetCommand("spListarPagosPorPrestamo", conexion, CommandType.StoredProcedure);
+                SqlParameter _numPrestamo = new SqlParameter("@IdPrestamo", p.IDPRESTAMO);
+                SqlParameter _numSucursal = new SqlParameter("@IdSucursal", p.SUCURSAL.IDSUCURSAL);
+
+                cmd.Parameters.Add(_numPrestamo);
+                cmd.Parameters.Add(_numSucursal);
+                SqlDataReader _Reader;
+                try
+                {
+                    conexion.Open();
+                    _Reader = cmd.ExecuteReader();
+                    int _idEmpleado, _idPrestamo, _idRecibo, _numCuota;
+                    decimal _montoPago;
+                    DateTime _fechaPago;
+                    Pago pago = null;
+                    while (_Reader.Read())
+                    {
+                        _fechaPago = Convert.ToDateTime(_Reader["Fecha"]);
+                        _idPrestamo = Convert.ToInt32(_Reader["IdPrestamo"]);
+                        _numCuota = Convert.ToInt32(_Reader["NumeroCuota"]);
+                        _montoPago = Convert.ToDecimal(_Reader["Monto"]);
+                        _idEmpleado = Convert.ToInt32(_Reader["IdEmpleado"]);
+                        _idRecibo = Convert.ToInt32(_Reader["IdRecibo"]);
+                        pago = new Pago
+                        {
+                            EMPLEADO = new Empleado { CI = _idEmpleado },
+                            FECHAPAGO = _fechaPago,
+                            IDRECIBO = _idRecibo,
+                            MONTO = _montoPago,
+                            NUMEROCUOTA = _numCuota,
+                            PRESTAMO = p
+                        };
+
+                        pagos.Add(pago);
+
+                    }
+                    _Reader.Close();
+
+                    return pagos;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
 
     }
 }
