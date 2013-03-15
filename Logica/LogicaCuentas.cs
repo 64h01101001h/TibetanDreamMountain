@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entidades;
-using Persistencia;
 using ExcepcionesPersonalizadas;
 using System.Xml;
 
@@ -29,8 +28,9 @@ namespace Logica
             try
             {
                 //PersistenciaCuentas pc = new PersistenciaCuentas();
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
-                pc.AltaCuenta(c);
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
+                //IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
+                remCuentas.AltaCuenta(c);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace Logica
         {
             try
             {
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
-                //PersistenciaCuentas pc = new PersistenciaCuentas();
-                return pc.ListarCuentas();
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
+
+                return remCuentas.ListarCuentas();
             }
             catch (Exception ex)
             {
@@ -58,10 +58,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCuentas pc = new PersistenciaCuentas();
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
 
-                return pc.BuscarCuentasCliente(c);
+
+                return remCuentas.BuscarCuentasCliente(c);
             }
             catch (Exception ex)
             {
@@ -74,10 +74,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCuentas pc = new PersistenciaCuentas();
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
 
-                pc.EliminarCuenta(c);
+
+                remCuentas.EliminarCuenta(c);
             }
             catch (Exception ex)
             {
@@ -89,10 +89,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCuentas pc = new PersistenciaCuentas();
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
 
-                return pc.BuscarCuenta(c);
+                return remCuentas.BuscarCuenta(c);
             }
             catch (Exception ex)
             {
@@ -104,10 +103,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCuentas pc = new PersistenciaCuentas();
-                IPersistenciaCuentas pc = FabricaPersistencia.getPersistenciaCuentas();
+                CommServicioRemoting.ServicioCuentas remCuentas = new CommServicioRemoting.ServicioCuentas();
 
-                pc.ModificarCuenta(c);
+
+                remCuentas.ModificarCuenta(c);
             }
             catch (Exception ex)
             {
@@ -127,7 +126,8 @@ namespace Logica
 
                 if (cuenta != null)
                 {
-                    IPersistenciaMovimientos pc = FabricaPersistencia.getPersistenciaMovimientos();
+                    CommServicioRemoting.ServicioMovimientos remMovi = new CommServicioRemoting.ServicioMovimientos();
+
 
                     //casos a contemplar:
                     //deposito en pesos cuenta en dolares
@@ -199,7 +199,7 @@ namespace Logica
                         lcuentas.ActualizarCuenta(cuenta);
                     }
 
-                pc.RealizarMovimiento(m);
+                    remMovi.RealizarMovimiento(m);
                 }
             }
             catch (ErrorSaldoInsuficienteParaRetiro ex)
@@ -228,7 +228,8 @@ namespace Logica
                 LogicaCuentas lcuentas = new LogicaCuentas();
                 Cuenta cuentaOrigen = lcuentas.BuscarCuenta(movOrigen.CUENTA);
                 //PersistenciaMovimientos pc = new PersistenciaMovimientos();
-                IPersistenciaMovimientos pc = FabricaPersistencia.getPersistenciaMovimientos();
+                CommServicioRemoting.ServicioMovimientos remMovi = new CommServicioRemoting.ServicioMovimientos();
+
 
 
                 //MOVIMIENTO ORIGEN
@@ -322,7 +323,7 @@ namespace Logica
                     movOrigen.SUCURSAL = cuentaOrigen.SUCURSAL;
                     movDestino.SUCURSAL = cuentaDestino.SUCURSAL;
 
-                    pc.RealizarTransferencia(movOrigen, movDestino);
+                    remMovi.RealizarTransferencia(movOrigen, movDestino);
                 }
             }
             catch (ErrorSaldoInsuficienteParaRetiro ex)
@@ -351,9 +352,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaMovimientos pm = new PersistenciaMovimientos();
-                IPersistenciaMovimientos pm = FabricaPersistencia.getPersistenciaMovimientos();
-                return pm.ConsultaMovimientos(c, d);
+                CommServicioRemoting.ServicioMovimientos remMovi = new CommServicioRemoting.ServicioMovimientos();
+
+                return remMovi.ConsultaMovimientos(c, d);
             }
             catch (Exception ex)
             {

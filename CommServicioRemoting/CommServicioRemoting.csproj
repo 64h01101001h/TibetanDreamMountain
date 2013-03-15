@@ -40,8 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ServicioSucursal.cs" />
+    <Compile Include="ServicioPrestamo.cs" />
+    <Compile Include="ServicioPagos.cs" />
+    <Compile Include="ServicioMovimientos.cs" />
+    <Compile Include="ServicioEmpleados.cs" />
+    <Compile Include="ServicioCuentas.cs" />
+    <Compile Include="ServicioCotizacion.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicioClientes.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entidades;
-using Persistencia;
 using ExcepcionesPersonalizadas;
 namespace Logica
 {
@@ -27,9 +26,8 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCotizacion ps = new PersistenciaCotizacion();
-                IPersistenciaCotizacion ps = FabricaPersistencia.getPersistenciaCotizacion();
-                return ps.ListarCotizaciones();
+                CommServicioRemoting.ServicioCotizacion remoteCotizacion = new CommServicioRemoting.ServicioCotizacion();
+                return remoteCotizacion.ListarCotizaciones();
             }
             catch (Exception ex)
             {
@@ -41,11 +39,11 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCotizacion pc = new PersistenciaCotizacion();
-                IPersistenciaCotizacion ps = FabricaPersistencia.getPersistenciaCotizacion();
+                CommServicioRemoting.ServicioCotizacion remoteCotizacion = new CommServicioRemoting.ServicioCotizacion();
 
 
-                ps.AltaCotizacion(s);
+
+                remoteCotizacion.AltaCotizacion(s);
             }
             catch (ErrorCotizacionYaExiste ex)
             {
@@ -61,10 +59,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCotizacion pc = new PersistenciaCotizacion();
-                IPersistenciaCotizacion ps = FabricaPersistencia.getPersistenciaCotizacion();
+                CommServicioRemoting.ServicioCotizacion remoteCotizacion = new CommServicioRemoting.ServicioCotizacion();
 
-                ps.EliminarCotizacion(s);
+
+                remoteCotizacion.EliminarCotizacion(s);
             }
             catch (Exception ex)
             {
@@ -76,10 +74,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCotizacion pc = new PersistenciaCotizacion();
-                IPersistenciaCotizacion ps = FabricaPersistencia.getPersistenciaCotizacion();
+                CommServicioRemoting.ServicioCotizacion remoteCotizacion = new CommServicioRemoting.ServicioCotizacion();
 
-                return ps.BuscarCotizacion(s);
+
+                return remoteCotizacion.BuscarCotizacion(s);
             }
             catch (Exception ex)
             {
@@ -91,10 +89,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaCotizacion pc = new PersistenciaCotizacion();
-                IPersistenciaCotizacion ps = FabricaPersistencia.getPersistenciaCotizacion();
+                CommServicioRemoting.ServicioCotizacion remoteCotizacion = new CommServicioRemoting.ServicioCotizacion();
 
-                ps.ModificarCotizacion(s, e);
+
+                remoteCotizacion.ModificarCotizacion(s, e);
             }
             catch (Exception ex)
             {

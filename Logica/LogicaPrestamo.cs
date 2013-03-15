@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entidades;
-using Persistencia;
 
 namespace Logica
 {
@@ -53,9 +52,8 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPagos pp = new PersistenciaPagos();
-                IPersistenciaPagos pp = FabricaPersistencia.getPersistenciaPagos();
-                List<Pago> ultimosPagos = pp.ListarUltimoPagoPrestamos(s);
+                CommServicioRemoting.ServicioPagos remotePagos= new CommServicioRemoting.ServicioPagos();
+                List<Pago> ultimosPagos = remotePagos.ListarUltimoPagoPrestamos(s);
 
                 List<Prestamo> prestamosAtrasados = new List<Prestamo>();
 
@@ -87,10 +85,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPrestamo ps = new PersistenciaPrestamo();
-                IPersistenciaPrestamo pp = FabricaPersistencia.getPersistenciaPrestamo();
+                CommServicioRemoting.ServicioPrestamo remotePrestamo = new CommServicioRemoting.ServicioPrestamo();
 
-                return pp.ListarPrestamos(s, Cancelado);
+
+                return remotePrestamo.ListarPrestamos(s, Cancelado);
                 //return null;
             }
             catch (Exception ex)
@@ -103,10 +101,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPrestamo pc = new PersistenciaPrestamo();
-                IPersistenciaPrestamo pp = FabricaPersistencia.getPersistenciaPrestamo();
+                CommServicioRemoting.ServicioPrestamo remotePrestamo = new CommServicioRemoting.ServicioPrestamo();
 
-                pp.AltaPrestamo(p);
+
+                remotePrestamo.AltaPrestamo(p);
             }
             catch (Exception ex)
             {
@@ -118,10 +116,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPrestamo pp = new PersistenciaPrestamo();
-                IPersistenciaPrestamo pp = FabricaPersistencia.getPersistenciaPrestamo();
+                CommServicioRemoting.ServicioPrestamo remotePrestamo = new CommServicioRemoting.ServicioPrestamo();
 
-                pp.CancelarPrestamo(s);
+
+                remotePrestamo.CancelarPrestamo(s);
             }
             catch (Exception ex)
             {
@@ -133,10 +131,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaPrestamo pp = new PersistenciaPrestamo();
-                IPersistenciaPrestamo pp = FabricaPersistencia.getPersistenciaPrestamo();
+                CommServicioRemoting.ServicioPrestamo remotePrestamo = new CommServicioRemoting.ServicioPrestamo();
 
-                return pp.BuscarPrestamo(s);
+
+                return remotePrestamo.BuscarPrestamo(s);
             }
             catch (Exception ex)
             {

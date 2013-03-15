@@ -8,8 +8,8 @@ namespace Persistencia
 {
     public interface IPersistenciaMovimientos
     {
-        void RealizarMovimiento(Movimiento m);
-        void RealizarTransferencia(Movimiento morigen, Movimiento mdestino);
-        List<Movimiento> ConsultaMovimientos(Cuenta Cuenta, DateTime d);
+            void RealizarMovimiento(Movimiento m);
+            void RealizarTransferencia(Movimiento morigen, Movimiento mdestino);
+            List<Movimiento> ConsultaMovimientos(Cuenta Cuenta, DateTime d);
     }
 }

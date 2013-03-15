@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entidades;
-using Persistencia;
 using ExcepcionesPersonalizadas;
 
 namespace Logica
@@ -29,15 +28,14 @@ namespace Logica
             {
                 if (u is Cliente)
                 {
-                    IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                    CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
                     //PersistenciaClientes pclientes = new PersistenciaClientes();
-                    pclientes.AltaCliente((Cliente)u);
+                    remotingClientes.AltaCliente((Cliente)u);
                 }
                 else
                 {
-                    //PersistenciaEmpleados pempleados = new PersistenciaEmpleados();
-                    IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
-                    pempleados.AltaEmpleado((Empleado)u);
+                    CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
+                    remotingEmpleados.AltaEmpleado((Empleado)u);
                 }
             }
             catch (Exception ex)
@@ -54,16 +52,16 @@ namespace Logica
                 if (u is Cliente)
                 {
                     //PersistenciaClientes pclientes = new PersistenciaClientes();
-                    IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                    CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                    pclientes.ModificarCliente((Cliente)u);
+
+                    remotingClientes.ModificarCliente((Cliente)u);
                 }
                 else
                 {
-                    //PersistenciaEmpleados pempleados = new PersistenciaEmpleados();
-                    IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
+                    CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
 
-                    pempleados.ModificarEmpleado((Empleado)u);
+                    remotingEmpleados.ModificarEmpleado((Empleado)u);
                 }
             }
             catch (Exception ex)
@@ -79,16 +77,16 @@ namespace Logica
                 if (u is Cliente)
                 {
                     //PersistenciaClientes pclientes = new PersistenciaClientes();
-                    IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                    CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                    pclientes.EliminarCliente((Cliente)u);
+
+                    remotingClientes.EliminarCliente((Cliente)u);
                 }
                 else
                 {
-                    //PersistenciaEmpleados pempleados = new PersistenciaEmpleados();
-                    IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
+                    CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
 
-                    pempleados.EliminarEmpleado((Empleado)u);
+                    remotingEmpleados.EliminarEmpleado((Empleado)u);
                 }
             }
             catch (Exception ex)
@@ -102,10 +100,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaClientes pclientes = new PersistenciaClientes();
-                IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                return pclientes.ListarClientes();
+
+                return remotingClientes.ListarClientes();
             }
             catch (Exception ex)
             {
@@ -117,10 +115,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaEmpleados pemp = new PersistenciaEmpleados();
-                IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
+                CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
 
-                return pempleados.ListarEmpleados();
+                return remotingEmpleados.ListarEmpleados();
             }
             catch (Exception ex)
             {
@@ -134,15 +131,16 @@ namespace Logica
             {
                 if (u is Cliente)
                 {
-                    IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                    CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                    return pclientes.BuscarClientePorCi((Cliente)u);
+
+                    return remotingClientes.BuscarClientePorCi((Cliente)u);
                 }
                 else
                 {
-                    IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
+                    CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
 
-                    return pempleados.BuscarEmpleadoPorCi((Empleado)u);
+                    return remotingEmpleados.BuscarEmpleadoPorCi((Empleado)u);
                 }
             }
             catch (Exception ex)
@@ -159,22 +157,18 @@ namespace Logica
             {
                 //ServicioRemoting.ServicioAlumno _objServicioA = new ServicioRemoting.ServicioAlumno();
                 //PersistenciaClientes pc = new PersistenciaClientes();
-                IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                Cliente a = pclientes.LoginCliente(NombreUsuario, Pass);
+
+                Cliente a = remotingClientes.LoginCliente(NombreUsuario, Pass);
                 if (a != null)
                 {
                     return a;
                 }
                 else
                 {
-                    //PersistenciaEmpleados pe = new PersistenciaEmpleados();
-                    IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
-
-
-                    //ServicioRemoting.ServicioDocente _objServicioD = new ServicioRemoting.ServicioDocente();
-                    pempleados.LoginEmpleado(NombreUsuario, Pass);
-                    Empleado e = pempleados.LoginEmpleado(NombreUsuario, Pass);
+                    CommServicioRemoting.ServicioEmpleados remotingEmpleados = new CommServicioRemoting.ServicioEmpleados();
+                    Empleado e = remotingEmpleados.LoginEmpleado(NombreUsuario, Pass);
 
                     return e;
                 }
@@ -190,9 +184,10 @@ namespace Logica
             try
             {
                 //PersistenciaClientes pc = new PersistenciaClientes();
-                IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
+                CommServicioRemoting.ServicioClientes remotingClientes = new CommServicioRemoting.ServicioClientes();
 
-                pclientes.ModificarPassword(c, newPass);
+
+                remotingClientes.ModificarPassword(c, newPass);
             }
             catch (ErrorPasswordActualNoValido ex)
             {

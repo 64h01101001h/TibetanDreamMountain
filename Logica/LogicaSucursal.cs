@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entidades;
-using Persistencia;
 
 namespace Logica
 {
@@ -28,8 +27,8 @@ namespace Logica
             try
             {
                 //PersistenciaSucursal ps = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
-                return ps.ListarSucursales();
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
+                return remotingSucursal.ListarSucursales();
             }
             catch (Exception ex)
             {
@@ -41,9 +40,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal pc = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
-                ps.AltaSucursal(s);
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
+
+                remotingSucursal.AltaSucursal(s);
             }
             catch (Exception ex)
             {
@@ -55,9 +54,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal pc = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
-                //ps.EliminarSucursal(s);
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
+
+               // remotingSucursal.eli
             }
             catch (Exception ex)
             {
@@ -69,9 +68,9 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal pc = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
-                                return ps.BuscarSucursal(s);
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
+
+                return remotingSucursal.BuscarSucursal(s);
             }
             catch (Exception ex)
             {
@@ -83,10 +82,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal pc = new PersistenciaSucursal();3
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
 
-                ps.ModificarSucursal(c);
+
+                remotingSucursal.ModificarSucursal(c);
             }
             catch (Exception ex)
             {
@@ -98,10 +97,10 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal ps = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
 
-                return ps.ListadoProductividadComparativo(fechaInicio, fechaFin);
+
+                return remotingSucursal.ListadoProductividadComparativo(fechaInicio, fechaFin);
             }
             catch (Exception ex)
             {
@@ -115,13 +114,13 @@ namespace Logica
         {
             try
             {
-                //PersistenciaSucursal ps = new PersistenciaSucursal();
-                IPersistenciaSucursal ps = FabricaPersistencia.getPersistenciaSucursal();
+                CommServicioRemoting.ServicioSucursal remotingSucursal = new CommServicioRemoting.ServicioSucursal();
 
-                saldoCajaDolares = ps.ArqueoCaja(DateTime.Now,"USD",e);
-                saldoCajaPesos = ps.ArqueoCaja(DateTime.Now,"UYU",e);
 
-                ps.TotalesArqueoCaja(e, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);
+                saldoCajaDolares = remotingSucursal.ArqueoCaja(DateTime.Now, "USD", e);
+                saldoCajaPesos = remotingSucursal.ArqueoCaja(DateTime.Now, "UYU", e);
+
+                remotingSucursal.TotalesArqueoCaja(e, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);
             }
             catch (Exception ex)
             {

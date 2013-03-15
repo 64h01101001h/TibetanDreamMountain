@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Entidades;
-using Persistencia;
 
 namespace Logica
 {
@@ -28,11 +27,8 @@ namespace Logica
         {
             try
             {
-                //ILogicaPrestamo logPres = FabricaLogica.getLogicaPrestamo();
-                //Prestamo pe = logPres.IsPrestamoCancelado(p);
-
-                IPersistenciaPrestamo persPrestamo = FabricaPersistencia.getPersistenciaPrestamo();
-                persPrestamo.PagarPrestamo(p, e);
+                CommServicioRemoting.ServicioPrestamo remPagos = new CommServicioRemoting.ServicioPrestamo();
+                remPagos.PagarPrestamo(p, e);
 
             }
             catch (Exception ex)
@@ -45,9 +41,10 @@ namespace Logica
         {
             try
             {
-                IPersistenciaPagos ps = FabricaPersistencia.getPersistenciaPagos();
+                CommServicioRemoting.ServicioPagos remPagos = new CommServicioRemoting.ServicioPagos();
 
-                return ps.ListarTodosPagosPrestamo(p);
+
+                return remPagos.ListarTodosPagosPrestamo(p);
             }
             catch (Exception ex)
             {
@@ -55,32 +52,6 @@ namespace Logica
             }
         }
 
-        //public void EliminarPago(Pago p)
-        //{
-        //    try
-        //    {
-        //        PersistenciaPagos pc = new PersistenciaPagos();
-        //        pc.EliminarPrestamo(s);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        //public Pago BuscarPago(Pago p)
-        //{
-        //    try
-        //    {
-        //        PersistenciaPagos pc = new PersistenciaPagos();
-        //        return pc.();
-        //        return null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
+      
     }
 }
