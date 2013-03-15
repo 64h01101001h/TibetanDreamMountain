@@ -283,7 +283,7 @@
             // 
             // CotizacionbindingSource
             // 
-            this.CotizacionbindingSource.DataSource = typeof(Entidades.Cotizacion);
+            this.CotizacionbindingSource.DataSource = typeof(GestionBancariaWS.Cotizacion);
             // 
             // ListarCotizaciones
             // 

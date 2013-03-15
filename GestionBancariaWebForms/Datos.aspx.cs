@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GestionBancariaWS;
+using System.Web.Services.Protocols;
 
 
 
@@ -49,11 +50,15 @@ public partial class Datos : System.Web.UI.Page
                 lblInfo.Text = "La nueva contraseña y su confirmacion no coinciden.";
             }
         }
-        catch (ErrorPasswordActualNoValido ex)
-        {
-            lblInfo.Text = ex.Message;
+        //catch (ErrorPasswordActualNoValido ex)
+        //{
+        //    lblInfo.Text = ex.Message;
 
-        }  
+        //}  
+        catch (SoapException exsoap)
+        {
+            lblInfo.Text = !string.IsNullOrEmpty(exsoap.Actor) ? exsoap.Actor : exsoap.Message;
+        }
         catch (Exception ex)
         {
             lblInfo.Text = ex.Message;

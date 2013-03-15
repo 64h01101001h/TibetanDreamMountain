@@ -1,4 +1,5 @@
-﻿namespace GestionBancariaWindows
+﻿using GestionBancariaWindows.GestionBancariaWS;
+namespace GestionBancariaWindows
 {
     partial class RetiroCuenta
     {
@@ -195,7 +196,7 @@
             // 
             // CuentasbindingSource
             // 
-            this.CuentasbindingSource.DataSource = typeof(Entidades.Cuenta);
+            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWS.Cuenta);
             // 
             // label2
             // 

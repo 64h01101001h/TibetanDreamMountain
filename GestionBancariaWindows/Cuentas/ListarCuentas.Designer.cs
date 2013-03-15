@@ -261,7 +261,7 @@
             // 
             // CuentasbindingSource
             // 
-            this.CuentasbindingSource.DataSource = typeof(Entidades.Cuenta);
+            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWS.Cuenta);
             // 
             // dataGridViewTextBoxColumn1
             // 

@@ -155,7 +155,7 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(Entidades.Sucursal);
+            this.bindingSource1.DataSource = typeof(GestionBancariaWS.Sucursal);
             // 
             // lblSucursal
             // 

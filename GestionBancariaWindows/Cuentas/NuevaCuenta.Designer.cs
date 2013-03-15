@@ -163,7 +163,7 @@
             // 
             // ClientesbindingSource
             // 
-            this.ClientesbindingSource.DataSource = typeof(Entidades.Cliente);
+            this.ClientesbindingSource.DataSource = typeof(GestionBancariaWS.Cliente);
             // 
             // label2
             // 

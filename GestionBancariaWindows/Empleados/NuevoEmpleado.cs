@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GestionBancariaWindows.GestionBancariaWS;
+using System.Web.Services.Protocols;
 
 
 namespace GestionBancariaWindows
@@ -115,9 +116,13 @@ namespace GestionBancariaWindows
                     }
                 }
             }
-            catch (ErrorUsuarioYaExiste uex)
+            //catch (ErrorUsuarioYaExiste uex)
+            //{
+            //    lblInfo.Text = uex.Message;
+            //}
+            catch (SoapException exsoap)
             {
-                lblInfo.Text = uex.Message;
+                lblInfo.Text = !string.IsNullOrEmpty(exsoap.Actor) ? exsoap.Actor : exsoap.Message;
             }
             catch (Exception ex)
             {

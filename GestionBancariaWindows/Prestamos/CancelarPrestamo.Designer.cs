@@ -275,7 +275,7 @@
             // 
             // PagosbindingSource
             // 
-            this.PagosbindingSource.DataSource = typeof(Entidades.Pago);
+            this.PagosbindingSource.DataSource = typeof(GestionBancariaWS.Pago);
             // 
             // btnBuscar
             // 
@@ -334,7 +334,7 @@
             // 
             // SucursalbindingSource
             // 
-            this.SucursalbindingSource.DataSource = typeof(Entidades.Sucursal);
+            this.SucursalbindingSource.DataSource = typeof(GestionBancariaWS.Sucursal);
             // 
             // CancelarPrestamo
             // 

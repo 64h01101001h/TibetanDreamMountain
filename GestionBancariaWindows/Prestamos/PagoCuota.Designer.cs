@@ -222,7 +222,7 @@
             // 
             // SucursalbindingSource
             // 
-            this.SucursalbindingSource.DataSource = typeof(Entidades.Sucursal);
+            this.SucursalbindingSource.DataSource = typeof(GestionBancariaWS.Sucursal);
             // 
             // PagoCuota
             // 

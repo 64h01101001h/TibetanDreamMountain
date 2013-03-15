@@ -237,7 +237,7 @@
             // 
             // PrestamosbindingSource
             // 
-            this.PrestamosbindingSource.DataSource = typeof(Entidades.Prestamo);
+            this.PrestamosbindingSource.DataSource = typeof(GestionBancariaWS.Prestamo);
             // 
             // iDPRESTAMODataGridViewTextBoxColumn
             // 

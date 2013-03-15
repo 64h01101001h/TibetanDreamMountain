@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GestionBancariaWindows.GestionBancariaWS;
+using System.Web.Services.Protocols;
 
 
 namespace GestionBancariaWindows
@@ -57,17 +58,21 @@ namespace GestionBancariaWindows
                     lblInfo.Text = "El formato del monto ingresado no es valido";
                 }
             }
-            catch (ErrorSaldoInsuficienteParaRetiro ex)
+            //catch (ErrorSaldoInsuficienteParaRetiro ex)
+            //{
+            //    lblInfo.Text = ex.Message;
+            //}
+            //catch (ErrorSucursalNoExiste ex)
+            //{
+            //    lblInfo.Text = ex.Message;
+            //}
+            //catch (ErrorUsuarioNoExiste ex)
+            //{
+            //    lblInfo.Text = ex.Message;
+            //}
+            catch (SoapException exsoap)
             {
-                lblInfo.Text = ex.Message;
-            }
-            catch (ErrorSucursalNoExiste ex)
-            {
-                lblInfo.Text = ex.Message;
-            }
-            catch (ErrorUsuarioNoExiste ex)
-            {
-                lblInfo.Text = ex.Message;
+                lblInfo.Text = !string.IsNullOrEmpty(exsoap.Actor) ? exsoap.Actor : exsoap.Message;
             }
             catch (Exception ex)
             {

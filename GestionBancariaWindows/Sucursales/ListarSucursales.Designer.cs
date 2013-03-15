@@ -259,7 +259,7 @@
             // 
             // SucursalesbindingSource
             // 
-            this.SucursalesbindingSource.DataSource = typeof(Entidades.Sucursal);
+            this.SucursalesbindingSource.DataSource = typeof(GestionBancariaWS.Sucursal);
             // 
             // iDSUCURSALDataGridViewTextBoxColumn
             // 
