@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E1D32FA2-FF2F-4020-A270-A1F4E7C401AD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GestionBancariaWindows</RootNamespace>
+    <AssemblyName>GestionBancariaWindows</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clientes\ListarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\ListarClientes.Designer.cs">
+      <DependentUpon>ListarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\NuevoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\NuevoCliente.Designer.cs">
+      <DependentUpon>NuevoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas\ListarCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cuentas\ListarCuentas.Designer.cs">
+      <DependentUpon>ListarCuentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas\RetiroCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cuentas\RetiroCuenta.Designer.cs">
+      <DependentUpon>RetiroCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas\NuevaCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cuentas\NuevaCuenta.Designer.cs">
+      <DependentUpon>NuevaCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas\DepositoCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cuentas\DepositoCuenta.Designer.cs">
+      <DependentUpon>DepositoCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\ListarEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\ListarEmpleados.Designer.cs">
+      <DependentUpon>ListarEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\NuevoEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\NuevoEmpleado.Designer.cs">
+      <DependentUpon>NuevoEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cotizaciones\ListarCotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cotizaciones\ListarCotizaciones.Designer.cs">
+      <DependentUpon>ListarCotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cotizaciones\NuevaCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cotizaciones\NuevaCotizacion.Designer.cs">
+      <DependentUpon>NuevaCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos\CancelarPrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prestamos\CancelarPrestamo.Designer.cs">
+      <DependentUpon>CancelarPrestamo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos\NuevoPrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prestamos\NuevoPrestamo.Designer.cs">
+      <DependentUpon>NuevoPrestamo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos\PagoCuota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prestamos\PagoCuota.Designer.cs">
+      <DependentUpon>PagoCuota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos\PrestamosAtrasados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prestamos\PrestamosAtrasados.Designer.cs">
+      <DependentUpon>PrestamosAtrasados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales\ListadoProductividad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sucursales\ListadoProductividad.Designer.cs">
+      <DependentUpon>ListadoProductividad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales\ArqueoCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sucursales\ArqueoCaja.Designer.cs">
+      <DependentUpon>ArqueoCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales\ListarSucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sucursales\ListarSucursales.Designer.cs">
+      <DependentUpon>ListarSucursales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales\NuevaSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sucursales\NuevaSucursal.Designer.cs">
+      <DependentUpon>NuevaSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\GestionBancariaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Clientes\ListarClientes.resx">
+      <DependentUpon>ListarClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\NuevoCliente.resx">
+      <DependentUpon>NuevoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuentas\ListarCuentas.resx">
+      <DependentUpon>ListarCuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuentas\RetiroCuenta.resx">
+      <DependentUpon>RetiroCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuentas\NuevaCuenta.resx">
+      <DependentUpon>NuevaCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuentas\DepositoCuenta.resx">
+      <DependentUpon>DepositoCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\ListarEmpleados.resx">
+      <DependentUpon>ListarEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\NuevoEmpleado.resx">
+      <DependentUpon>NuevoEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cotizaciones\ListarCotizaciones.resx">
+      <DependentUpon>ListarCotizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cotizaciones\NuevaCotizacion.resx">
+      <DependentUpon>NuevaCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamos\CancelarPrestamo.resx">
+      <DependentUpon>CancelarPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamos\NuevoPrestamo.resx">
+      <DependentUpon>NuevoPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamos\PagoCuota.resx">
+      <DependentUpon>PagoCuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamos\PrestamosAtrasados.resx">
+      <DependentUpon>PrestamosAtrasados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Sucursales\ListadoProductividad.resx">
+      <DependentUpon>ListadoProductividad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sucursales\ArqueoCaja.resx">
+      <DependentUpon>ArqueoCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sucursales\ListarSucursales.resx">
+      <DependentUpon>ListarSucursales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sucursales\NuevaSucursal.resx">
+      <DependentUpon>NuevaSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Entidades.Cliente.datasource" />
+    <None Include="Properties\DataSources\Entidades.Cotizacion.datasource" />
+    <None Include="Properties\DataSources\Entidades.Cuenta.datasource" />
+    <None Include="Properties\DataSources\Entidades.Pago.datasource" />
+    <None Include="Properties\DataSources\Entidades.Prestamo.datasource" />
+    <None Include="Properties\DataSources\Entidades.Sucursal.datasource" />
+    <None Include="Properties\DataSources\Logica.LogicaSucursal.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\GestionBancariaWS\Cliente.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Cotizacion.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Cuenta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Empleado.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Movimiento.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Pago.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Prestamo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\GestionBancariaWS\ServiceGestionBancaria.wsdl" />
+    <None Include="Web References\GestionBancariaWS\Sucursal.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GestionBancariaWS\Usuario.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{ADCDD125-1B3A-4F63-AA9D-936983889A1B}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcepcionesPersonalizadas\ExcepcionesPersonalizadas.csproj">
+      <Project>{B188EAE8-5882-4E0D-BD33-C22332E164BF}</Project>
+      <Name>ExcepcionesPersonalizadas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{A9672D4B-2190-4037-B4DC-7AC5D8B3627A}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:43285/GestionBancariaWS/ServiceGestionBancaria.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\GestionBancariaWS\</RelPath>
+      <UpdateFromURL>http://localhost:43285/GestionBancariaWS/ServiceGestionBancaria.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>GestionBancariaWindows_GestionBancariaWS_ServiceGestionBancaria</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\GestionBancariaWS\ServiceGestionBancaria.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
