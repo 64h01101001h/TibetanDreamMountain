@@ -130,8 +130,8 @@ namespace Persistencia
 @Fecha datetime*/
                 SqlParameter _IdSucursal = new SqlParameter("@IdEmpleado", E.CI);
                 SqlParameter _IdPrestamo = new SqlParameter("@IdPrestamo", P.IDPRESTAMO);
-                SqlParameter _Monto = new SqlParameter("@Monto");
-                SqlParameter _Fecha = new SqlParameter("@Fecha");
+                SqlParameter _Monto = new SqlParameter("@Monto",P.MONTO);
+                SqlParameter _Fecha = new SqlParameter("@Fecha",DateTime.Now);
                 SqlParameter _retorno = new SqlParameter("@Mont", SqlDbType.Int);
                 _retorno.Direction = ParameterDirection.ReturnValue;
 
