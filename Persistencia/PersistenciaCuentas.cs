@@ -148,7 +148,7 @@ namespace Persistencia
                 Cuenta c = null;
                 int _idCuenta, _idSucursal, _idCliente;
                 decimal _saldo;
-                string _moneda;
+                string _moneda,_nombreCliente, _apellidoCliente;
 
 
                 conexion.Open();
@@ -160,11 +160,12 @@ namespace Persistencia
                     _idSucursal = (int)_Reader["IdSucursal"];
                     _saldo = Convert.ToDecimal(_Reader["Saldo"]);
                     _moneda = (string)_Reader["Moneda"];
-
+                    _nombreCliente = (string)_Reader["Nombre"];
+                    _apellidoCliente = (string)_Reader["Apellido"];
                     c = new Cuenta
                     {
                         IDCUENTA = _idCuenta,
-                        CLIENTE = new Cliente { CI = _idCliente },
+                        CLIENTE = new Cliente { CI = _idCliente, NOMBRE =_nombreCliente, APELLIDO =_apellidoCliente },
                         SUCURSAL = new Sucursal { IDSUCURSAL = _idSucursal },
                         SALDO = _saldo,
                         MONEDA = _moneda,
@@ -220,8 +221,6 @@ namespace Persistencia
                 }
             }
         }
-
-
 
         public void EliminarCuenta(Cuenta c)
         {

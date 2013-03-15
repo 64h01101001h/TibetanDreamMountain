@@ -1437,6 +1437,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private bool aCTIVOField;
         
+        private string tOSTRINGField;
+        
         /// <comentarios/>
         public int CI {
             get {
@@ -1494,6 +1496,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.aCTIVOField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string TOSTRING {
+            get {
+                return this.tOSTRINGField;
+            }
+            set {
+                this.tOSTRINGField = value;
             }
         }
     }
@@ -1739,6 +1751,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private System.DateTime fECHAAPERTURAField;
         
+        private string tOSTRINGField;
+        
         /// <comentarios/>
         public int IDCUENTA {
             get {
@@ -1806,6 +1820,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.fECHAAPERTURAField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string TOSTRING {
+            get {
+                return this.tOSTRINGField;
+            }
+            set {
+                this.tOSTRINGField = value;
             }
         }
     }
@@ -1986,6 +2010,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private decimal pRECIOVENTAField;
         
+        private string tOSTRINGField;
+        
         /// <comentarios/>
         public System.DateTime FECHA {
             get {
@@ -2013,6 +2039,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.pRECIOVENTAField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string TOSTRING {
+            get {
+                return this.tOSTRINGField;
+            }
+            set {
+                this.tOSTRINGField = value;
             }
         }
     }

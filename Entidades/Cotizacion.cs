@@ -20,5 +20,18 @@ namespace Entidades
         {
             return "Cotizacion del dolar para la fecha: " + FECHA.ToShortDateString()  + " Compra: $" + PRECIOCOMPRA + " " + " Venta: $"  + PRECIOVENTA;
         }
+
+
+        public string TOSTRING
+        {
+            get
+            {
+                return ToString();
+            }
+            set
+            {
+
+            }
+        }
     }
 }

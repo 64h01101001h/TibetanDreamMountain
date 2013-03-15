@@ -111,11 +111,16 @@ namespace GestionBancariaWindows
                             {
                                 CuentasbindingSource.DataSource = cuentasCliente;
                                 cmbCuentas.DataSource = CuentasbindingSource;
+                                
                             }
                             else
                             {
                                 lblInfo.Text = "El cliente seleccionado no posee ninguna cuenta.";
                             }
+                        }
+                        else
+                        {
+                            lblInfo.Text = "No existe cliente con esa cedula.";
                         }
                     }
             }

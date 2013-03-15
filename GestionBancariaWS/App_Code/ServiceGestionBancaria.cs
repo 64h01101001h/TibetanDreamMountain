@@ -176,6 +176,22 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
             ILogicaCuentas lc = FabricaLogica.getLogicaCuentas();
             lc.RealizarTransferencia(movOrigen, movDestino);
         }
+        catch (ErrorNoExisteCotizacion exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
+        catch (ErrorSaldoInsuficienteParaRetiro exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
+        catch (ErrorSucursalNoExiste exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
+        catch (ErrorUsuarioNoExiste exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
         catch (Exception ex)
         {
             throw ex;
@@ -217,7 +233,7 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
 
             //Monto
             XmlNode Monto = ArchivoRetornoXml.CreateNode(XmlNodeType.Element, "Monto", null);
-            Monto.InnerText = Convert.ToString(m.MONEDA);
+            Monto.InnerText = Convert.ToString(m.MONTO);
             NuevoPadre.AppendChild(Monto);
 
             raiz.AppendChild(NuevoPadre);
@@ -318,6 +334,18 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
 
             lc.RealizarMovimiento(m);
         }
+        catch (ErrorSaldoInsuficienteParaRetiro exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
+        catch (ErrorSucursalNoExiste exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
+        catch (ErrorUsuarioNoExiste exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
         catch (Exception ex)
         {
             throw ex;
@@ -364,6 +392,10 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
             ILogicaCotizacion lc = FabricaLogica.getLogicaCotizacion();
 
             lc.AltaCotizacion(s);
+        }
+        catch (ErrorSaldoInsuficienteParaRetiro exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
         }
         catch (Exception ex)
         {

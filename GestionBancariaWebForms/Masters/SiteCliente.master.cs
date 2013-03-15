@@ -49,7 +49,6 @@ public partial class Masters_SiteCliente : System.Web.UI.MasterPage
                     lblLogueadoComo.Text = ((Cliente)Session["Usuario"]).NOMBREUSUARIO;
                 }
             }
-
         }
 
         catch (Exception ex)

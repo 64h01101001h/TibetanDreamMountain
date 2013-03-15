@@ -130,7 +130,7 @@ namespace Logica
                     IPersistenciaMovimientos pc = FabricaPersistencia.getPersistenciaMovimientos();
 
 
-                    if (m.CUENTA.MONEDA != m.MONEDA)
+                    if (cuenta.MONEDA != m.MONEDA)
                     {
                         //OBTENEMOS COTIZACION
                         //--------------------
@@ -143,7 +143,7 @@ namespace Logica
                         if (c != null)
                         {
                             decimal montoMovimiento;
-                            if (m.CUENTA.MONEDA == "USD")
+                            if (cuenta.MONEDA == "USD")
                             {
                                 //la cuenta esta en dolares y el deposito se esta haciendo en pesos
                                 montoMovimiento = m.MONTO / c.PRECIOVENTA;
@@ -201,7 +201,7 @@ namespace Logica
                 if (cuentaOrigen != null)
                 {
 
-                    if (movOrigen.CUENTA.MONEDA != movOrigen.MONEDA)
+                    if (cuentaOrigen.MONEDA != movOrigen.MONEDA)
                     {
                         //OBTENEMOS COTIZACION
                         //--------------------
@@ -214,7 +214,7 @@ namespace Logica
                         if (c != null)
                         {
                             decimal montoMovimiento;
-                            if (movOrigen.CUENTA.MONEDA == "USD")
+                            if (cuentaOrigen.MONEDA == "USD")
                             {
                                 //la cuenta esta en dolares y el deposito se esta haciendo en pesos
                                 montoMovimiento = movOrigen.MONTO / c.PRECIOVENTA;
@@ -228,6 +228,10 @@ namespace Logica
                             //actualizamos el nuevo monto del movimiento;
                             //-------------------------------------------
                             movOrigen.MONTO = montoMovimiento;
+                        }
+                        else
+                        {
+                            throw new ErrorNoExisteCotizacion();
                         }
                     }
 
@@ -243,7 +247,7 @@ namespace Logica
                 if (cuentaDestino != null)
                 {
 
-                    if (movOrigen.CUENTA.MONEDA != movOrigen.MONEDA)
+                    if (cuentaDestino.MONEDA != movOrigen.MONEDA)
                     {
                         //OBTENEMOS COTIZACION
                         //--------------------
@@ -257,7 +261,7 @@ namespace Logica
                         if (c != null)
                         {
                             decimal montoMovimiento;
-                            if (movDestino.CUENTA.MONEDA == "USD")
+                            if (cuentaDestino.MONEDA == "USD")
                             {
                                 //la cuenta esta en dolares y el deposito se esta haciendo en pesos
                                 montoMovimiento = movDestino.MONTO / c.PRECIOVENTA;
@@ -272,19 +276,26 @@ namespace Logica
                             //-------------------------------------------
                             movDestino.MONTO = montoMovimiento;
                         }
+                        else
+                        {
+                            throw new ErrorNoExisteCotizacion();
+                        }
                     }
 
-                    //if (movOrigen.TIPOMOVIMIENTO == 1 && movOrigen.MONTO > cuentaDestino.SALDO)
-                    //{
-                    //    throw new ErrorSaldoInsuficienteParaRetiro();
-                    //}
-
+                 
                     //REALIZO LA TRANSFERENCIA
                     //------------------------
+                    movOrigen.SUCURSAL = cuentaOrigen.SUCURSAL;
+                    movDestino.SUCURSAL = cuentaDestino.SUCURSAL;
+
                     pc.RealizarTransferencia(movOrigen, movDestino);
                 }
             }
             catch (ErrorSaldoInsuficienteParaRetiro ex)
+            {
+                throw ex;
+            }
+            catch (ErrorNoExisteCotizacion ex)
             {
                 throw ex;
             }

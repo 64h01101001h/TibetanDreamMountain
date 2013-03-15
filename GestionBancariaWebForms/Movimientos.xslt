@@ -12,7 +12,7 @@
           <td>Monto</td>
         </tr>
         <!--Determino como quiero desplegar cada nodo -->
-        <xsl:for-each select="Cuenta/Movimiento" >
+        <xsl:for-each select="raiz/Cuenta" >
           <xsl:sort order="ascending" select="Fecha"/>
           <tr style="background-color:Yellow;color:Black" >
             <td>

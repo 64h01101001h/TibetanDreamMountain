@@ -31,5 +31,16 @@ namespace Entidades
             return NOMBRE + " " + APELLIDO + " "  + "(" + CI + ")";
         }
 
+        public string TOSTRING
+        {
+            get
+            {
+                return ToString();
+            }
+            set
+            {
+
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GestionBancariaWS;
+using System.Web.Services.Protocols;
 
 public partial class Transferencia : System.Web.UI.Page
 {
@@ -49,16 +50,19 @@ public partial class Transferencia : System.Web.UI.Page
         lblInfo.Text = "";
         try
         {
-            ServiceGestionBancaria sbancaria = new ServiceGestionBancaria();
-
-            Cuenta[] cuentas = sbancaria.ListarCuentasCliente(USUARIO_LOGUEADO);
-
-            if (cuentas != null)
+            if (!Page.IsPostBack)
             {
-                foreach (Cuenta c in cuentas)
+                ServiceGestionBancaria sbancaria = new ServiceGestionBancaria();
+
+                Cuenta[] cuentas = sbancaria.ListarCuentasCliente(USUARIO_LOGUEADO);
+
+                if (cuentas != null)
                 {
-                    ListItem l = new ListItem("Cuenta:" + " " + c.IDCUENTA + " - " + "Moneda: " + c.MONEDA + " - " + "Saldo: " + c.SALDO, Convert.ToString(c.IDCUENTA));
-                    ddlCuentas.Items.Add(l);
+                    foreach (Cuenta c in cuentas)
+                    {
+                        ListItem l = new ListItem("Cuenta:" + " " + c.IDCUENTA + " - " + "Moneda: " + c.MONEDA + " - " + "Saldo: " + c.SALDO, Convert.ToString(c.IDCUENTA));
+                        ddlCuentas.Items.Add(l);
+                    }
                 }
             }
         }
@@ -84,7 +88,7 @@ public partial class Transferencia : System.Web.UI.Page
                 if (c != null)
                 {
                     CUENTA_DESTINO = c;
-                    lblTitular.Text = c.CLIENTE.ToString();
+                    lblTitular.Text = c.CLIENTE.TOSTRING;
                 }
             }
         }
@@ -109,7 +113,8 @@ public partial class Transferencia : System.Web.UI.Page
                 MONEDA = ddlMoneda.SelectedValue,
                 MONTO = Convert.ToDecimal(txtMonto.Text),
                 SUCURSAL = cuentaOrigen.SUCURSAL,
-                USUARIO = USUARIO_LOGUEADO
+                USUARIO = USUARIO_LOGUEADO,
+                TIPOMOVIMIENTO = 1
             };
 
             Movimiento mDestino = new Movimiento
@@ -118,12 +123,17 @@ public partial class Transferencia : System.Web.UI.Page
                 MONEDA = ddlMoneda.SelectedValue,
                 MONTO = Convert.ToDecimal(txtMonto.Text),
                 SUCURSAL = CUENTA_DESTINO.SUCURSAL,
-                USUARIO = USUARIO_LOGUEADO
+                USUARIO = USUARIO_LOGUEADO,
+                TIPOMOVIMIENTO = 2
             };
 
             sbancaria.RealizarTransferencia(mOrigen, mDestino);
             lblInfo.Text = "Transferencia realizada con exito";
 
+        }
+        catch (SoapException exsoap)
+        {
+            lblInfo.Text = !string.IsNullOrEmpty(exsoap.Actor) ? exsoap.Actor : exsoap.Message;
         }
         catch (Exception ex)
         {

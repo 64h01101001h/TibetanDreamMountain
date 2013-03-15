@@ -196,7 +196,7 @@ namespace GestionBancariaWindows
             // 
             // CuentasbindingSource
             // 
-            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWS.Cuenta);
+            this.CuentasbindingSource.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Cuenta);
             // 
             // label2
             // 

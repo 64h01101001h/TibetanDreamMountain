@@ -791,7 +791,9 @@ if not exists(select * from Cuenta where Cuenta.IdCuenta=@IdCuenta)
 	begin
 		return -1   --Cuenta no existe en el sistema o está inactiva
 	end
-	select * from Cuenta where Cuenta.IdCuenta=@IdCuenta
+	select Cuenta.*, Usuario.Nombre, Usuario.Apellido from Cuenta
+	inner join Usuario on Cuenta.IdCliente = Usuario.Ci
+	where Cuenta.IdCuenta=@IdCuenta
 end
 GO
 
@@ -1090,23 +1092,120 @@ create proc spRealizarTransferencia
 @IdSucursalDestino int,
 @Fecha datetime,
 @Moneda nvarchar(3),
-@Monto float,
+@MontoOrigen float,
+@MontoDestino float,
 @CiUsuario int,
 @IdCuentaOrigen int,
 @IdCuentaDestino int
 as
 BEGIN
  begin tran
- --Retiro
- exec AltaMovimiento @IdSucursalOrigen,1,GetDate,@Moneda,1,@Monto,@CiUsuario,@IdCuentaOrigen
-	if @@ERROR <> 0
-		rollback tran
  
- --DEPOSITO
-  exec AltaMovimiento @IdSucursalDestino,2,GetDate,@Moneda,1,@Monto,@CiUsuario,@IdCuentaDestino
+	if not exists(select * from Sucursal where Sucursal.IdSucursal=@IdSucursalOrigen and Sucursal.Activa = 1)
+	begin
+		return -1   --sucursal no existe en el sistema o está inactiva
+	end
+	
+	if not exists(select * from Sucursal where Sucursal.IdSucursal=@IdSucursalDestino and Sucursal.Activa = 1)
+	begin
+		return -1   --sucursal no existe en el sistema o está inactiva
+	end
+	
+	if not exists(select * from Usuario where Usuario.Ci=@CiUsuario and Usuario.Activo = 1)
+	begin
+		return -2   --Usuario no existe en el sistema o está inactivo
+	end
+	
+ ----Retiro
+ --exec AltaMovimiento @IdSucursalOrigen,1,@Fecha,@Moneda,1,@Monto,@CiUsuario,@IdCuentaOrigen
+	--if @@ERROR <> 0
+	--	rollback tran
+	--	return -1
+ ----DEPOSITO
+ -- exec AltaMovimiento @IdSucursalDestino,2,@Fecha,@Moneda,1,@Monto,@CiUsuario,@IdCuentaDestino
+	--if @@ERROR <> 0
+	--	rollback tran
+	--	return -1
+	
+	declare @cantidad int
+	select @cantidad = COUNT(*) from Movimiento where Movimiento.IdSucursal=@IdSucursalOrigen
+	set @cantidad = @cantidad+1 /*numero del nuevo movimiento*/
+
+	
+	--guardamos el movimiento
+	insert into Movimiento(IdSucursal,NumeroMovimiento,Tipo,Fecha,Moneda,ViaWeb,Monto,IdCuenta,CiUsuario)
+			values(@IdSucursalOrigen, @cantidad, 1, @Fecha, @Moneda,1,@MontoOrigen,@IdCuentaOrigen,@CiUsuario)
+			
 	if @@ERROR <> 0
-		rollback tran
- 
+	begin	
+		rollback tran		
+		return -3
+	end
+	
+	--Distinguimos si sumamos o restamos el saldo de la cuenta
+	declare @saldo float
+	select @saldo = Saldo from Cuenta where Cuenta.IdCuenta = @IdCuentaOrigen
+	
+	if @@ERROR <> 0
+	begin	
+		rollback tran		
+		return -3
+	end
+	
+	--RESTAMOS EL SALDO EN LA CUENTA DE ORIGEN
+	---------------------------------------------
+	set @saldo = @saldo - @MontoOrigen
+	
+		
+	update Cuenta set Saldo = @saldo where Cuenta.IdCuenta = @IdCuentaOrigen
+			
+	if @@error<>0
+	begin
+		rollback tran		
+		return -3  --Si no se actualiza el saldo--
+	end
+		
+		
+	--************ COMIENZA EL DEPOSITO
+	--**************************************************************************	
+	set @saldo = 0
+	
+	select @cantidad = COUNT(*) from Movimiento where Movimiento.IdSucursal=@IdSucursalDestino
+	set @cantidad = @cantidad+1 /*numero del nuevo movimiento*/
+
+	
+	--guardamos el movimiento
+	insert into Movimiento(IdSucursal,NumeroMovimiento,Tipo,Fecha,Moneda,ViaWeb,Monto,IdCuenta,CiUsuario)
+			values(@IdSucursalDestino, @cantidad, 2, @Fecha, @Moneda,1,@MontoDestino,@IdCuentaDestino,@CiUsuario)
+			
+	if @@ERROR <> 0
+	begin	
+		rollback tran		
+		return -3
+	end
+	
+	--Distinguimos si sumamos o restamos el saldo de la cuenta
+	select @saldo = Saldo from Cuenta where Cuenta.IdCuenta = @IdCuentaDestino
+	
+	if @@ERROR <> 0
+	begin	
+		rollback tran		
+		return -3
+	end
+	
+	--SUMAMOS EL SALDO EN LA CUENTA DE ORIGEN
+	---------------------------------------------
+	set @saldo = @saldo + @MontoDestino
+		
+	update Cuenta set Saldo = @saldo where Cuenta.IdCuenta = @IdCuentaDestino
+			
+	if @@error<>0
+	begin
+		rollback tran		
+		return -3  --Si no se actualiza el saldo--
+	end
+		
+		-- COMMITS TRANSACTION
  commit tran
 end
 

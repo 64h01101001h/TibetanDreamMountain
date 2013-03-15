@@ -27,6 +27,23 @@ public partial class ConsultaMovimientos : System.Web.UI.Page
         }
     }
 
+    public XmlDocument MOVIMIENTOS
+    {
+        get
+        {
+            if (Session["MOVIMIENTOS"] == null)
+                return null;
+            return (XmlDocument)Session["MOVIMIENTOS"];
+        }
+        set
+        {
+            if (Session["MOVIMIENTOS"] == null)
+                Session.Add("MOVIMIENTOS", value);
+            else
+                Session["MOVIMIENTOS"] = value;
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -61,14 +78,13 @@ public partial class ConsultaMovimientos : System.Web.UI.Page
 
                 myXmlDocumentObject.AppendChild(myXmlDocumentObject.ImportNode(nodos, true));
 
-                //XmlDocument _DocumentoXML = new XmlDocument();
-
-                //myXmlDocumentObject.Load(_camino); //camino tiene el path al document xml
-
                 XPathNavigator _Navegador = myXmlDocumentObject.CreateNavigator();
                 XmlMovimientos.XPathNavigator = _Navegador;
+                XmlMovimientos.DataBind();
 
                 XmlMovimientos.TransformSource = Server.MapPath("~/Movimientos.xslt");
+
+                MOVIMIENTOS = myXmlDocumentObject;
             }
         }
         catch (Exception ex)
@@ -82,23 +98,67 @@ public partial class ConsultaMovimientos : System.Web.UI.Page
     {
         try
         {
-            //ejecuto la consulta
-            XPathNodeIterator _Resultado = XmlMovimientos.XPathNavigator.Select("/Cuenta/Movimiento[Fecha = '" + txtFechaEspecifica.Text + "']");
-
-            //si hay resultado lo muestro;
-            //El iterador tiene una propiedad count que me va a determinar la cantidad de nodos que puedo navegar
-            if (_Resultado.Count > 0)
+            if (MOVIMIENTOS != null)
             {
-                XmlMovimientos.XPathNavigator = _Resultado.Current;
-                while (_Resultado.MoveNext())
-                {
-                    //string nombre = _Resultado.Current.SelectSingleNode("NombreUsuario").ToString();
-                    //string enviados = _Resultado.Current.SelectSingleNode("MailsEnviados").ToString();
-                    //string recibidos = _Resultado.Current.SelectSingleNode("MailsRecibidos").ToString();
+                XPathNavigator _Navegador = MOVIMIENTOS.CreateNavigator();
+                XmlMovimientos.XPathNavigator = _Navegador;
+                XmlMovimientos.DataBind();
+                XmlMovimientos.TransformSource = Server.MapPath("~/Movimientos.xslt");
 
-                    //object[] row0 = { nombre, enviados, recibidos };
-                    //gridEstadistica.Rows.Add(row0);
+                //ejecuto la consulta
+                XPathNodeIterator _Resultado = XmlMovimientos.XPathNavigator.Select("raiz/Cuenta[Fecha = '" + txtFechaEspecifica.Text + "']");
+
+
+                //si hay resultado lo muestro;
+                //El iterador tiene una propiedad count que me va a determinar la cantidad de nodos que puedo navegar
+                if (_Resultado != null && _Resultado.Count > 0)
+                {
+                    XmlDocument ResultadoXml = new XmlDocument();
+
+                    XmlNode raiz = ResultadoXml.CreateNode(XmlNodeType.Element, "raiz", null);
+                    while (_Resultado.MoveNext())
+                    {
+
+                        XmlNode NuevoPadre = ResultadoXml.CreateNode(XmlNodeType.Element, "Cuenta", null);
+
+                        //numero movimiento
+                        XmlNode NumMovimiento = ResultadoXml.CreateNode(XmlNodeType.Element, "NumeroMovimiento", null);
+                        NumMovimiento.InnerText = Convert.ToString(_Resultado.Current.SelectSingleNode("NumeroMovimiento"));
+                        NuevoPadre.AppendChild(NumMovimiento);
+
+                        //fecha
+                        XmlNode Fecha = ResultadoXml.CreateNode(XmlNodeType.Element, "Fecha", null);
+                        Fecha.InnerText = Convert.ToString(_Resultado.Current.SelectSingleNode("Fecha"));
+                        NuevoPadre.AppendChild(Fecha);
+
+                        //Moneda
+                        XmlNode Moneda = ResultadoXml.CreateNode(XmlNodeType.Element, "Moneda", null);
+                        Moneda.InnerText = Convert.ToString(_Resultado.Current.SelectSingleNode("Moneda"));
+                        NuevoPadre.AppendChild(Moneda);
+
+                        //Monto
+                        XmlNode Monto = ResultadoXml.CreateNode(XmlNodeType.Element, "Monto", null);
+                        Monto.InnerText = Convert.ToString(_Resultado.Current.SelectSingleNode("Monto"));
+                        NuevoPadre.AppendChild(Monto);
+
+                        raiz.AppendChild(NuevoPadre);
+
+                    }
+                    ResultadoXml.AppendChild(raiz);
+
+
+                    //bindeamos el control xml a los nuevos resultados filtrados
+                    //------------------------------------------------------------
+                    _Navegador = ResultadoXml.CreateNavigator();
+                    XmlMovimientos.XPathNavigator = _Navegador;
+                    XmlMovimientos.DataBind();
+                    XmlMovimientos.TransformSource = Server.MapPath("~/Movimientos.xslt");
                 }
+            }
+
+            else
+            {
+                lblInfo.Text = "No hay movimientos a filtrar";
             }
         }
         catch (Exception ex)

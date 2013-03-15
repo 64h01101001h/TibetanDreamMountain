@@ -88,10 +88,12 @@ namespace Persistencia
                 SqlParameter _idSucursalDestino = new SqlParameter("@IdSucursalDestino", mdestino.SUCURSAL.IDSUCURSAL);
 
                 SqlParameter _moneda = new SqlParameter("@Moneda", morigen.MONEDA);
-                SqlParameter _monto = new SqlParameter("@Monto", morigen.MONTO);
+                SqlParameter _montoOrigen = new SqlParameter("@MontoOrigen", morigen.MONTO);
+                SqlParameter _montoDestino = new SqlParameter("@MontoDestino", mdestino.MONTO);
                 SqlParameter _ciUsuario = new SqlParameter("@CiUsuario", morigen.USUARIO.CI);
                 SqlParameter _idCuentaOrigen = new SqlParameter("@IdCuentaOrigen", morigen.CUENTA.IDCUENTA);
                 SqlParameter _idCuentaDestino = new SqlParameter("@IdCuentaDestino", mdestino.CUENTA.IDCUENTA);
+                SqlParameter _fecha = new SqlParameter("@Fecha", DateTime.Now); //FECHA DE HOY PARA LA TRANSFERENCIA
 
 
                 SqlParameter _retorno = new SqlParameter("@Retorno", SqlDbType.Int);
@@ -101,10 +103,12 @@ namespace Persistencia
                 cmd.Parameters.Add(_idSucursalDestino);
 
                 cmd.Parameters.Add(_moneda);
-                cmd.Parameters.Add(_monto);
+                cmd.Parameters.Add(_montoOrigen);
+                cmd.Parameters.Add(_montoDestino);
                 cmd.Parameters.Add(_ciUsuario);
                 cmd.Parameters.Add(_idCuentaOrigen);
                 cmd.Parameters.Add(_idCuentaDestino);
+                cmd.Parameters.Add(_fecha);
 
 
                 cmd.Parameters.Add(_retorno);
@@ -155,7 +159,7 @@ namespace Persistencia
 
                 conexion.Open();
                 _Reader = cmd.ExecuteReader();
-                if (_Reader.Read())
+                while (_Reader.Read())
                 {
                     _idCuenta = (int)_Reader["IdCuenta"];
                     _idCliente = (int)_Reader["CiUsuario"];

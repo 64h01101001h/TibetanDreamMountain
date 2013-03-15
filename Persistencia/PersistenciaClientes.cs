@@ -137,27 +137,28 @@ namespace Persistencia
                 }
                 reader.Close();
 
-
-                //LEEMOS LOS TELEFONOS DEL CLIENTE
-                //--------------------------------
-                SqlCommand cmdTelefonos = Conexion.GetCommand("spListarTelefonos", conexion, CommandType.StoredProcedure);
-                SqlParameter _CiTelefonos = new SqlParameter("@IdCliente", cliente.CI);
-                cmdTelefonos.Parameters.Add(_CiTelefonos);
-
-                SqlDataReader readerTelefonos;
-                List<string> telefonos = new List<string>();
-
-                readerTelefonos = cmdTelefonos.ExecuteReader();
-                while (readerTelefonos.Read())
+                if (c != null)
                 {
-                    telefonos.Add(Convert.ToString(readerTelefonos["Tel"]));
+                    //LEEMOS LOS TELEFONOS DEL CLIENTE
+                    //--------------------------------
+                    SqlCommand cmdTelefonos = Conexion.GetCommand("spListarTelefonos", conexion, CommandType.StoredProcedure);
+                    SqlParameter _CiTelefonos = new SqlParameter("@IdCliente", cliente.CI);
+                    cmdTelefonos.Parameters.Add(_CiTelefonos);
+
+                    SqlDataReader readerTelefonos;
+                    List<string> telefonos = new List<string>();
+
+                    readerTelefonos = cmdTelefonos.ExecuteReader();
+                    while (readerTelefonos.Read())
+                    {
+                        telefonos.Add(Convert.ToString(readerTelefonos["Tel"]));
+                    }
+                    readerTelefonos.Close();
+
+                    //ASIGNAMOS LOS TELEFONOS LEIDOS
+                    //------------------------------
+                    c.TELEFONOS = telefonos;
                 }
-                readerTelefonos.Close();
-
-                //ASIGNAMOS LOS TELEFONOS LEIDOS
-                //------------------------------
-                c.TELEFONOS = telefonos;
-
                 return c;
             }
             catch (Exception ex)
@@ -405,7 +406,7 @@ namespace Persistencia
 
                     if (Convert.ToInt32(_retorno.Value) == -1)
                         throw new ErrorPasswordActualNoValido();
-                    
+
                     //ACTUALIZAMOS EL CLIENTE
                     //-----------------------
                     conexion.Open();

@@ -19,7 +19,11 @@ namespace Entidades
         public Cliente CLIENTE { get; set; }
 
         private decimal _saldo;
-        public decimal SALDO { get; set; }
+        public decimal SALDO
+        {
+            get;
+            set;
+        }
 
         private List<Movimiento> _movimientosCuenta;
         public List<Movimiento> MOVIMIENTOSCUENTA { get; set; }
@@ -30,7 +34,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return "Cuenta:" + " " + IDCUENTA + " - " + "Moneda: " + MONEDA + " - " + "Saldo: " + SALDO;
+            return "Cuenta:" + " " + IDCUENTA + " - " + "Moneda: " + MONEDA + " - " + "Saldo: " + SALDO.ToString("C");
         }
 
         public string TOSTRING
@@ -38,6 +42,10 @@ namespace Entidades
             get
             {
                 return ToString();
+            }
+            set
+            {
+
             }
         }
 

@@ -134,19 +134,16 @@ namespace Logica
             {
                 if (u is Cliente)
                 {
-                    //PersistenciaClientes pclientes = new PersistenciaClientes();
                     IPersistenciaClientes pclientes = FabricaPersistencia.getPersistenciaClientes();
 
                     return pclientes.BuscarClientePorCi((Cliente)u);
                 }
                 else
                 {
-                    //PersistenciaEmpleados pempleados = new PersistenciaEmpleados();
                     IPersistenciaEmpleados pempleados = FabricaPersistencia.getPersistenciaEmpleados();
 
                     return pempleados.BuscarEmpleadoPorCi((Empleado)u);
                 }
-                return null;
             }
             catch (Exception ex)
             {
