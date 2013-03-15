@@ -275,6 +275,43 @@ namespace Persistencia
             return Convert.ToInt32(_retorno.Value);
         }
 
+        public void DesactivarSucursal(Sucursal L)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.Cnn);
+            SqlCommand cmd = Conexion.GetCommand("spDesactivarSucursal", conexion, CommandType.StoredProcedure);
+
+            SqlParameter _IdSucursal = new SqlParameter("@IdSucursal", L.NOMBRE);
+            SqlParameter _retorno = new SqlParameter("@Retorno", SqlDbType.Int) { Direction = ParameterDirection.ReturnValue };
+
+
+            cmd.Parameters.Add(_IdSucursal);
+
+            cmd.Parameters.Add(_retorno);
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                if (Convert.ToInt32(_retorno.Value) == -1)
+                {
+                    throw new ErrorSucursalNoExiste();
+                }
+                else
+                    throw new ErrorBaseDeDatos();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        
+        }
+
         public Sucursal BuscarSucursal(Sucursal sucursal)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);
