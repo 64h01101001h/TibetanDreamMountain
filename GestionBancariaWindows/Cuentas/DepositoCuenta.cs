@@ -42,7 +42,7 @@ namespace GestionBancariaWindows
                     if (c != null)
                     {
                         CUENTA = c;
-                        txtNombre.Text = c.CLIENTE.ToString();
+                        txtNombre.Text = c.CLIENTE.TOSTRING;
                         txtMoneda.Text = c.MONEDA;
 
                     }
@@ -139,7 +139,7 @@ namespace GestionBancariaWindows
 
                         if (c != null)
                         {
-                            lblCotizacion.Text = lblCotizacion.Text + " " + c.ToString();
+                            lblCotizacion.Text = lblCotizacion.Text + " " + c.TOSTRING;
                         }
                         else
                         {
