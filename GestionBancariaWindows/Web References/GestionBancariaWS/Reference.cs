@@ -1603,6 +1603,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         
         private Sucursal sUCURSALField;
         
+        private string sUCURSALTOSTRINGField;
+        
         /// <comentarios/>
         public Sucursal SUCURSAL {
             get {
@@ -1610,6 +1612,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.sUCURSALField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string SUCURSALTOSTRING {
+            get {
+                return this.sUCURSALTOSTRINGField;
+            }
+            set {
+                this.sUCURSALTOSTRINGField = value;
             }
         }
     }
@@ -1639,6 +1651,8 @@ namespace GestionBancariaWindows.GestionBancariaWS {
         private int cANTIDADPRESTAMOSField;
         
         private int cANTIDADCUENTASABIERTASField;
+        
+        private string tOSTRINGField;
         
         /// <comentarios/>
         public int IDSUCURSAL {
@@ -1727,6 +1741,16 @@ namespace GestionBancariaWindows.GestionBancariaWS {
             }
             set {
                 this.cANTIDADCUENTASABIERTASField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string TOSTRING {
+            get {
+                return this.tOSTRINGField;
+            }
+            set {
+                this.tOSTRINGField = value;
             }
         }
     }

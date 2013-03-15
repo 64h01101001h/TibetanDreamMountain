@@ -48,12 +48,13 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lvEmpleados = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CiCol = new System.Windows.Forms.DataGridViewLinkColumn();
             this.UsuarioCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -247,6 +248,16 @@
             this.lvEmpleados.TabIndex = 0;
             this.lvEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lvEmpleados_CellClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SUCURSAL";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Sucursal";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Empleado);
+            // 
             // CiCol
             // 
             this.CiCol.DataPropertyName = "CI";
@@ -280,7 +291,7 @@
             // 
             // Sucursal
             // 
-            this.Sucursal.DataPropertyName = "SUCURSAL.NOMBRE";
+            this.Sucursal.DataPropertyName = "SUCURSALTOSTRING";
             this.Sucursal.HeaderText = "Sucursal";
             this.Sucursal.Name = "Sucursal";
             this.Sucursal.ReadOnly = true;
@@ -336,5 +347,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sucursal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

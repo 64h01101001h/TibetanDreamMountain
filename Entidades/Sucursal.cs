@@ -35,5 +35,17 @@ namespace Entidades
        private int _cantidadCuentasAbiertas;
        public int CANTIDADPRESTAMOS { get; set; }
        public int CANTIDADCUENTASABIERTAS { get; set; }
+
+       public string TOSTRING
+       {
+           get
+           {
+               return NOMBRE;
+           }
+           set
+           {
+
+           }
+       }
    }
 }
