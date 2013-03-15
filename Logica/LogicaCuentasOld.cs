@@ -122,84 +122,50 @@ namespace Logica
             {
                 //LogicaCuentas lcuentas = new LogicaCuentas();
                 ILogicaCuentas lcuentas = FabricaLogica.getLogicaCuentas();
-                
                 Cuenta cuenta = lcuentas.BuscarCuenta(m.CUENTA);
 
                 if (cuenta != null)
                 {
+                    //PersistenciaMovimientos pc = new PersistenciaMovimientos();
                     IPersistenciaMovimientos pc = FabricaPersistencia.getPersistenciaMovimientos();
 
-                    //casos a contemplar:
-                    //deposito en pesos cuenta en dolares
-                    //deposito en pesos cuenta en pesos
-                    //deposito en dolares cuenta en dolares
-                    //deposito en dolares cuenta en pesos
 
-                    //controlar saldo:
-
-                    //retiro en pesos cuenta en dolares 
-                    //retiro en pesos cuenta en pesos
-                    //retiro en dolares cuenta en dolares
-                    //retiro en dolares cuenta en pesos
-
-                    ILogicaCotizacion lc = FabricaLogica.getLogicaCotizacion();
-                    Cotizacion c = new Cotizacion();
-                    c.FECHA = DateTime.Now;
-                    c = lc.BuscarCotizacion(c);
-                    decimal montoMovimiento = m.MONTO;
-
-                    if (c != null) //si la cotizacion existe calculo montoMovimiento
+                    if (cuenta.MONEDA != m.MONEDA)
                     {
-                        if (cuenta.MONEDA == "USD")
-                        {
-                            //la cuenta esta en dolares y el deposito/retiro se esta haciendo en pesos
-                            montoMovimiento = m.MONTO / c.PRECIOVENTA;
-                        }
-                        else
-                        {
-                            //la cuenta esta en pesos y el deposito/retiro se esta haciendo en dolares
-                            montoMovimiento = m.MONTO * c.PRECIOCOMPRA;
-                        }
-                    }
-                    else //si no existe la cotizacion
-                    {
-                        throw new ErrorNoExisteCotizacion();
-                    }
+                        //OBTENEMOS COTIZACION
+                        //--------------------
+                        //LogicaCotizacion lc = new LogicaCotizacion();
+                        ILogicaCotizacion lc = FabricaLogica.getLogicaCotizacion();
+                        Cotizacion c = new Cotizacion();
+                        c.FECHA = DateTime.Now;
+                        c = lc.BuscarCotizacion(c);
 
-                    if (m.TIPOMOVIMIENTO == 2) // caso deposito
-                    {
-                        if (cuenta.MONEDA != m.MONEDA) // caso deposito moneda distinta
+                        if (c != null)
                         {
-                            cuenta.SALDO = cuenta.SALDO + montoMovimiento; //utilizo el valor calculado
-                        }
-                        else //caso monedas iguales
-                        {
-                            cuenta.SALDO = cuenta.SALDO + m.MONTO; //utilizo el valor del movimiento m
-                        }
-                        lcuentas.ActualizarCuenta(cuenta);
-                    }
-                    else //caso retiro
-                    {
-                        if (cuenta.MONEDA != m.MONEDA) //caso monedas distintas
-                        {
-                            if (montoMovimiento > cuenta.SALDO)
+                            decimal montoMovimiento;
+                            if (cuenta.MONEDA == "USD")
                             {
-                                throw new ErrorSaldoInsuficienteParaRetiro();
+                                //la cuenta esta en dolares y el deposito se esta haciendo en pesos
+                                montoMovimiento = m.MONTO / c.PRECIOVENTA;
                             }
-                            cuenta.SALDO = cuenta.SALDO - montoMovimiento;
-                        }
-                        else//caso retiro monedas iguales
-                        {
-                            if (m.MONTO > cuenta.SALDO)
+                            else
                             {
-                                throw new ErrorSaldoInsuficienteParaRetiro();
+                                //la cuenta esta en pesos y el deposito se esta haciendo en dolares
+                                montoMovimiento = m.MONTO * c.PRECIOCOMPRA;
                             }
-                            cuenta.SALDO = cuenta.SALDO - m.MONTO;
+
+                            //actualizamos el nuevo monto del movimiento;
+                            //-------------------------------------------
+                            m.MONTO = montoMovimiento;
                         }
-                        lcuentas.ActualizarCuenta(cuenta);
                     }
 
-                pc.RealizarMovimiento(m);
+                    if (m.TIPOMOVIMIENTO == 1 && m.MONTO > cuenta.SALDO)
+                    {
+                        throw new ErrorSaldoInsuficienteParaRetiro();
+                    }
+
+                    pc.RealizarMovimiento(m);
                 }
             }
             catch (ErrorSaldoInsuficienteParaRetiro ex)

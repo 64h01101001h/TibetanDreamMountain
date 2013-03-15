@@ -334,6 +334,10 @@ public class ServiceGestionBancaria : System.Web.Services.WebService
 
             lc.RealizarMovimiento(m);
         }
+        catch (ErrorNoExisteCotizacion exal)
+        {
+            throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);
+        }
         catch (ErrorSaldoInsuficienteParaRetiro exal)
         {
             throw new SoapException(exal.Message, SoapException.ClientFaultCode, exal.Message);

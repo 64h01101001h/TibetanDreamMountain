@@ -358,7 +358,7 @@ create table Movimiento(IdSucursal int not null references Sucursal(IdSucursal),
 						-- . No es necesario establecer un campo de tipo bit para definir si es un movimiento web o dentro de entidad
 						*/
 
-create proc [dbo].[AltaMovimiento] /*podemos controlar lo de la cotizacion fuera del script*/
+create proc AltaMovimiento /*podemos controlar lo de la cotizacion fuera del script*/
 @IdSucursal int,
 @Tipo int,
 @Fecha datetime,
@@ -383,45 +383,18 @@ declare @cantidad int
 select @cantidad = COUNT(*) from Movimiento where Movimiento.IdSucursal=@IdSucursal
 set @cantidad = @cantidad+1 /*numero del nuevo movimiento*/
 
-	begin tran
+
 	--guardamos el movimiento
 	insert into Movimiento(IdSucursal,NumeroMovimiento,Tipo,Fecha,Moneda,ViaWeb,Monto,IdCuenta,CiUsuario)
 			values(@IdSucursal, @cantidad, @Tipo, @Fecha, @Moneda,@ViaWeb,@Monto,@IdCuenta,@CiUsuario)
 			
 	if @@ERROR <> 0
 	begin	
-		rollback tran		
 		return -3
 	end
 	
-	--Distinguimos si sumamos o restamos el saldo de la cuenta
-	declare @saldo float
-	select @saldo = Saldo from Cuenta where Cuenta.IdCuenta = @IdCuenta
-	
-	if @@ERROR <> 0
-	begin	
-		rollback tran		
-		return -3
-	end
-	
-	if (@Tipo = 2)
-	begin
-		set @saldo = @saldo + @monto
-		end
-	else
-	begin
-		set @saldo = @saldo - @monto
-	end
-		
-	update Cuenta set Saldo = @saldo where Cuenta.IdCuenta = @IdCuenta
-			
-	if @@error<>0
-	begin
-		rollback tran		
-		return -3  --Si no se actualiza el saldo--
-	end
 
-commit tran
+
 END
 GO
 /*
@@ -1008,7 +981,7 @@ begin
 	set @Retiros = (select SUM(Movimiento.Monto) from Movimiento where CAST (Movimiento.Fecha as date) = CAST (@Fecha as date) and Movimiento.Tipo = 1 and Movimiento.Moneda=@Moneda and Movimiento.IdSucursal=@Sucursal and Movimiento.CiUsuario=@IdEmpleado)
 	set @ArqueoTotal = ISNULL(@Pagos,0)+ ISNULL(@Depositos,0)-ISNULL(@Retiros,0) --resto los retiros, sumo pagos y depositos.
 	
-	select @ArqueoTotal  --devuelvo el resultado.
+	return @ArqueoTotal  --devuelvo el resultado.
 
 end
 GO
