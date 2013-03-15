@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using Logica;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -32,8 +31,8 @@ namespace GestionBancariaWindows
             {
                 //CARGA LAS SUCURSALES
                 //--------------------
-                LogicaSucursal lu = new LogicaSucursal();
-                List<Sucursal> sucursales = lu.ListarSucursales();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Sucursal[] sucursales = serv.ListarSucursales();
                 foreach (Sucursal s in sucursales)
                 {
                     bindingSource1.Add(s);
@@ -100,15 +99,15 @@ namespace GestionBancariaWindows
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
-                    LogicaUsuarios lu = new LogicaUsuarios();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     if (editar)
                     {
-                        lu.ActualizarUsuario(EMPLEADO);
+                        serv.ActualizarUsuario(EMPLEADO);
                         lblInfo.Text = "Empleado actualizado correctamente";
                     }
                     else
                     {
-                        lu.AltaUsuario(EMPLEADO);
+                       serv.AltaUsuario(EMPLEADO);
 
                         lblInfo.Text = "Empleado ingresado correctamente";
                         //LIMPIAMOS EL FORMULARIO
@@ -246,8 +245,8 @@ namespace GestionBancariaWindows
             {
                 if (MessageBox.Show("Esta seguro de eliminar el empleado " + EMPLEADO.NOMBRE + " " + EMPLEADO.APELLIDO, "Eliminar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    LogicaUsuarios lu = new LogicaUsuarios();
-                    lu.EliminarUsuario(EMPLEADO);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.EliminarUsuario(EMPLEADO);
                     lblInfo.Text = "Empleado eliminado correctamente";
                     LimpiarFormulario();
                     btnGuardar.Text = "Guardar";

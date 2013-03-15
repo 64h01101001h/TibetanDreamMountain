@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
-using Entidades;
-using ExcepcionesPersonalizadas;
+
 using System.Collections.Generic;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 using System;
 
 namespace GestionBancariaWindows
@@ -19,8 +19,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaCuentas lc = new LogicaCuentas();
-                List<Cuenta> cuentas = lc.ListarCuentas();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cuenta[] cuentas = serv.ListarCuentas();
 
                 CuentasbindingSource.DataSource = cuentas;
 
@@ -50,10 +50,10 @@ namespace GestionBancariaWindows
                     int idCuenta;
                     if (Int32.TryParse(Convert.ToString(lvCuentas.Rows[e.RowIndex].Cells[0].Value), out idCuenta))
                     {
-                        LogicaCuentas lC = new LogicaCuentas();
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
                         Cuenta c = new Cuenta { IDCUENTA= idCuenta };
 
-                        c = (Cuenta)lC.BuscarCuenta(c);
+                        c = (Cuenta)serv.BuscarCuenta(c);
                         NuevaCuenta nu = new NuevaCuenta { CUENTA = c };
 
                         nu.Show();
@@ -73,8 +73,8 @@ namespace GestionBancariaWindows
             {
                 lvCuentas.Rows.Clear();
 
-                LogicaCuentas lu = new LogicaCuentas();
-                List<Cuenta> cuentas = lu.ListarCuentas();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cuenta[] cuentas = serv.ListarCuentas();
 
                 CuentasbindingSource.DataSource = cuentas;
                 lvCuentas.DataSource = CuentasbindingSource;

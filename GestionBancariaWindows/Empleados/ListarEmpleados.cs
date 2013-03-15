@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
-using Logica;
+﻿using GestionBancariaWindows.GestionBancariaWS;
+using System.Windows.Forms;
 using System.Collections.Generic;
-using Entidades;
+
 using System;
 
 namespace GestionBancariaWindows
@@ -17,8 +17,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaUsuarios lu = new LogicaUsuarios();
-                List<Empleado> empleados = lu.ListarEmpleados();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Empleado[] empleados = serv.ListarEmpleados();
 
                 bindingSource1.DataSource = empleados;
                 lvEmpleados.DataSource = bindingSource1;
@@ -55,9 +55,9 @@ namespace GestionBancariaWindows
                     int ci;
                     if (Int32.TryParse(Convert.ToString(lvEmpleados.Rows[e.RowIndex].Cells[0].Value), out ci))
                     {
-                        LogicaUsuarios lu = new LogicaUsuarios();
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
                         Empleado emp = new Empleado { CI = ci };
-                        emp = (Empleado)lu.BuscarUsuarioPorCi(emp);
+                        emp = (Empleado)serv.BuscarUsuarioPorCi(emp);
                         NuevoEmpleado nu = new NuevoEmpleado { EMPLEADO = emp };
                         nu.Show();
                     }
@@ -76,8 +76,8 @@ namespace GestionBancariaWindows
             {
                 lvEmpleados.Rows.Clear();
 
-                LogicaUsuarios lu = new LogicaUsuarios();
-                List<Empleado> empleados = lu.ListarEmpleados();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Empleado[] empleados = serv.ListarEmpleados();
 
                 bindingSource1.DataSource = empleados;
                 lvEmpleados.DataSource = bindingSource1;

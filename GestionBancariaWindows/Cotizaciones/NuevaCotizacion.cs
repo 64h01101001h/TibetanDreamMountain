@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using Logica;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -27,8 +26,8 @@ namespace GestionBancariaWindows
             {
                 if (MessageBox.Show("Esta seguro de eliminar esta cotizacion de fecha" + COTIZACION.FECHA, "Eliminar Cotizacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    LogicaCotizacion lu = new LogicaCotizacion();
-                    lu.EliminarCotizacion(COTIZACION);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.EliminarCotizacion(COTIZACION);
                     lblInfo.Text = "Cotizacion eliminada correctamente";
                     LimpiarFormulario();
                     btnGuardar.Text = "Guardar";
@@ -67,16 +66,16 @@ namespace GestionBancariaWindows
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
-                    LogicaCotizacion lu = new LogicaCotizacion();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     if (editar)
                     {
 
-                        lu.ActualizarCotizacion(COTIZACION, new Empleado()); //***** ACA HAY QUE PASAR EL EMPLEADO ACTUALMENTE LOGUEADO
+                        serv.ActualizarCotizacion(COTIZACION, new Empleado()); //***** ACA HAY QUE PASAR EL EMPLEADO ACTUALMENTE LOGUEADO
                         lblInfo.Text = "Cotizacion actualizada correctamente";
                     }
                     else
                     {
-                        lu.AltaCotizacion(COTIZACION);
+                        serv.AltaCotizacion(COTIZACION);
 
                         lblInfo.Text = "Cotizacion ingresada correctamente";
                         //LIMPIAMOS EL FORMULARIO

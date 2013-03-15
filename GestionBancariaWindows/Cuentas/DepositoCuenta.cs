@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using Logica;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -34,10 +33,10 @@ namespace GestionBancariaWindows
                 int idCuenta;
                 if (Int32.TryParse(Convert.ToString(txtNumCuenta.Text), out idCuenta))
                 {
-                    LogicaCuentas lC = new LogicaCuentas();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     Cuenta c = new Cuenta { IDCUENTA = idCuenta };
 
-                    c = (Cuenta)lC.BuscarCuenta(c);
+                    c = (Cuenta)serv.BuscarCuenta(c);
 
                     if (c != null)
                     {
@@ -86,8 +85,8 @@ namespace GestionBancariaWindows
                     m.USUARIO = EMPLEADO;
                     m.VIAWEB = false;
 
-                    LogicaCuentas lc = new LogicaCuentas();
-                    lc.RealizarMovimiento(m);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.RealizarMovimiento(m);
 
                     lblInfo.Text = "Deposito realizado correctamente.";
                     LimpiarFormulario();
@@ -126,12 +125,12 @@ namespace GestionBancariaWindows
                     {
                         //DESPLIEGA COTIZACION DEL DIA
                         //----------------------------
-                        LogicaCotizacion lc = new LogicaCotizacion();
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
                         Cotizacion c = new Cotizacion();
 
                         c.FECHA = DateTime.Now;
 
-                        c = lc.BuscarCotizacion(c);//BUSCAMOS LA COTIZACION DEL DIA
+                        c = serv.BuscarCotizacion(c);//BUSCAMOS LA COTIZACION DEL DIA
 
                         if (c != null)
                         {

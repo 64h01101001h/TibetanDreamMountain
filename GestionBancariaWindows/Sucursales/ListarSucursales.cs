@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Logica;
-using Entidades;
+using GestionBancariaWindows.GestionBancariaWS;
+
 namespace GestionBancariaWindows
 {
     public partial class ListarSucursales : Form
@@ -16,8 +16,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaSucursal lu = new LogicaSucursal();
-                List<Sucursal> clientes = lu.ListarSucursales();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Sucursal[] clientes = serv.ListarSucursales();
 
                 SucursalesbindingSource.DataSource = clientes;
                 lvSucursales.DataSource = SucursalesbindingSource;
@@ -40,11 +40,11 @@ namespace GestionBancariaWindows
                     int idSucursal;
                     if (Int32.TryParse(Convert.ToString(lvSucursales.Rows[e.RowIndex].Cells[0].Value), out idSucursal))
                     {
-                        LogicaSucursal lu = new LogicaSucursal();
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
 
                         Sucursal c = new Sucursal { IDSUCURSAL = idSucursal };
 
-                        c = (Sucursal)lu.BuscarSucursal(c);
+                        c = (Sucursal)serv.BuscarSucursal(c);
                         NuevaSucursal nu = new NuevaSucursal { SUCURSAL = c };
 
                         nu.Show();
@@ -79,8 +79,8 @@ namespace GestionBancariaWindows
             {
                 lvSucursales.Rows.Clear();
 
-                LogicaSucursal lu = new LogicaSucursal();
-                List<Sucursal> clientes = lu.ListarSucursales();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Sucursal[] clientes = serv.ListarSucursales();
 
                 SucursalesbindingSource.DataSource = clientes;
                 lvSucursales.DataSource = SucursalesbindingSource;

@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -69,15 +69,15 @@ namespace GestionBancariaWindows
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
-                    LogicaSucursal lu = new LogicaSucursal();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     if (editar)
                     {
-                        lu.ActualizarSucursal(SUCURSAL);
+                        serv.ActualizarSucursal(SUCURSAL);
                         lblInfo.Text = "Sucursal actualizada correctamente";
                     }
                     else
                     {
-                        lu.AltaSucursal(SUCURSAL);
+                       serv.AltaSucursal(SUCURSAL);
 
                         lblInfo.Text = "Sucursal ingresada correctamente";
                         //LIMPIAMOS EL FORMULARIO
@@ -111,8 +111,8 @@ namespace GestionBancariaWindows
             {
                 if (MessageBox.Show("Esta seguro de eliminar esta sucursal " + SUCURSAL.NOMBRE, "Eliminar Sucursal", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    LogicaSucursal lu = new LogicaSucursal();
-                    lu.EliminarSucursal(SUCURSAL);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.EliminarSucursal(SUCURSAL);
                     lblInfo.Text = "Sucursal eliminada correctamente";
                     LimpiarFormulario();
 

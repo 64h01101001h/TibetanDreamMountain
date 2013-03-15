@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using ExcepcionesPersonalizadas;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -24,9 +23,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaPrestamo lp = new LogicaPrestamo();
-                //Sucursal s = new Sucursal();
-                List<Prestamo> prestamosAtrasados = lp.ListarPrestamosAtrasados(EMPLEADO.SUCURSAL);
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Prestamo[] prestamosAtrasados = serv.ListarPrestamosAtrasados(EMPLEADO.SUCURSAL);
 
                 PrestamosbindingSource.DataSource = prestamosAtrasados;
                 lvPrestamosAtrasados.DataSource = PrestamosbindingSource;

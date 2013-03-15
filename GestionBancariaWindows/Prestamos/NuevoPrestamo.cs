@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using ExcepcionesPersonalizadas;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -29,30 +28,14 @@ namespace GestionBancariaWindows
             {
                 //LISTAMOS LOS CLIENTES
                 //---------------------
-                LogicaUsuarios lu = new LogicaUsuarios();
-                List<Cliente> clientes = lu.ListarClientes();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cliente[] clientes = serv.ListarClientes();
                 foreach (Cliente c in clientes)
                 {
                     ClientesbindingSource.Add(c);
                 }
 
 
-                //if (PRESTAMO != null)
-                //{
-                //    cmbCliente.SelectedValue = PRESTAMO.CLIENTE.CI;
-                //    txtMonto.Text = Convert.ToString(PRESTAMO.MONTO);
-                //    cmbMonedaRetiro.Text = PRESTAMO.MONEDA;
-                //    dtpFecha.Value = PRESTAMO.FECHAEMITIDO;
-                //    numericCuotas.Value = PRESTAMO.TOTALCUOTAS;
-                //    chkCancelado.Checked = PRESTAMO.CANCELADO;
-
-                //    btnGuardar.Text = "Actualizar";
-
-                //}
-                //else
-                //{
-                //    //btnEliminar.Visible = false;
-                //}
             }
             catch (Exception ex)
             {
@@ -119,17 +102,7 @@ namespace GestionBancariaWindows
             {
                 if (this.ValidateChildren(ValidationConstraints.Enabled) && ValidateForm())
                 {
-                    //bool editar = false;
-                    //if (PRESTAMO == null)
-                    //{
-                    //    PRESTAMO = new Prestamo();
-                    //    PRESTAMO.CLIENTE = new Cliente();
-                    //    PRESTAMO.SUCURSAL = new Sucursal();
-                    //}
-                    //else
-                    //{
-                    //    editar = true;
-                    //}
+                   
 
                     //CARGAMOS INFORMACION DEL PRESTAMO
                     //---------------------------------
@@ -146,27 +119,15 @@ namespace GestionBancariaWindows
                     PRESTAMO.SUCURSAL.IDSUCURSAL = 1; //** AQUI VA LA SUCURSAL DEL USUARIO LOGUEADO.
                     PRESTAMO.TOTALCUOTAS = Convert.ToInt32(numericCuotas.Value);
 
-                    //** HACER EL LOGIN DE USUARIO ANTES DE ENTREGAR Y CORREGIR ESTO
 
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
 
-
-                    //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
-                    //---------------------------------------------
-                    //if (editar)
-                    //{
-                    //    lu.ActualizarPrestamo(PRESTAMO);
-                    //    lblInfo.Text = "Prestamo actualizado correctamente";
-                    //}
-                    //else
-                    //{
-                    LogicaPrestamo lu = new LogicaPrestamo();
-
-                        lu.AltaPrestamo(PRESTAMO);
+                       serv.AltaPrestamo(PRESTAMO);
 
                         lblInfo.Text = "Prestamo ingresado correctamente";
                         //LIMPIAMOS EL FORMULARIO
                         LimpiarFormulario();
-                    //}
+                    
                 }
             }
             catch (ErrorUsuarioYaExiste uex)

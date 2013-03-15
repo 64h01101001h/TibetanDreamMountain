@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-//using BiosWebMailWindows.refServiceWebMailWin;
-using Entidades;
-using ExcepcionesPersonalizadas;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -27,15 +25,10 @@ namespace GestionBancariaWindows
         {
             try
             {
-                //ILogicaUsuario LogicaUsuario = FabricaLogica.getLogicaUsuario();
-                //ServiceWebMail sm = new ServiceWebMail();
-                //Usuario NuevoUsuario = LogicaUsuario.getLoginUsuario(txtUsuario.Text, txtPass.Text);
-
-               
-
-
-                LogicaUsuarios lu = new LogicaUsuarios();
-                Usuario employee = lu.getLoginUsuario(txtNombreUsuario.Text, txtPassword.Text);
+                
+                //LogicaUsuarios lu = new LogicaUsuarios();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Usuario employee = serv.getLoginUsuario(txtNombreUsuario.Text, txtPassword.Text);
 
                 if (employee != null && employee.ACTIVO)
                 {

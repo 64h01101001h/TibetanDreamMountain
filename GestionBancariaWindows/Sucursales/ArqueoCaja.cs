@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Logica;
-using ExcepcionesPersonalizadas;
-using Entidades;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -28,7 +27,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaSucursal ls = new LogicaSucursal();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 decimal saldoCajaDolares = Decimal.Zero, saldoCajaPesos = Decimal.Zero;
                 int cantTotalDepositos = 0, cantTotalPagos = 0, cantTotalRetiros = 0;
                 ls.ArqueoCaja(EMPLEADO, ref saldoCajaDolares, ref saldoCajaPesos, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);

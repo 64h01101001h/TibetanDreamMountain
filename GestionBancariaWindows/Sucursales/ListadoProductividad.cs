@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Logica;
-using Entidades;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -26,8 +25,8 @@ namespace GestionBancariaWindows
             {
                 lvSucursales.Rows.Clear();
 
-                LogicaSucursal ls = new LogicaSucursal();
-                List<Sucursal> listadoComparativo = ls.ListadoProductividadComparativo(dtpFechaInicio.Value,dtpFechaFin.Value);
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Sucursal[] listadoComparativo = serv.ListadoProductividadComparativo(dtpFechaInicio.Value,dtpFechaFin.Value);
 
                 SucursalbindingSource.DataSource = listadoComparativo;
                 lvSucursales.DataSource = SucursalbindingSource;

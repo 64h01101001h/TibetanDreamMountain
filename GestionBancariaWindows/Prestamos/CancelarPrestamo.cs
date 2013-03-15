@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Logica;
-using Entidades;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -25,8 +24,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaSucursal lp = new LogicaSucursal();
-                List<Sucursal> sucursales = lp.ListarSucursales();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+               Sucursal[] sucursales = serv.ListarSucursales();
 
                 SucursalbindingSource.DataSource = sucursales;
             }
@@ -51,8 +50,8 @@ namespace GestionBancariaWindows
                     s.IDSUCURSAL = Convert.ToInt32(cmbSucursal.SelectedValue);
                     p.SUCURSAL = s;
 
-                    LogicaPrestamo lp = new LogicaPrestamo();
-                    List<Pago> pagos = lp.IsPrestamoCancelado(ref p);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    Pago[] pagos = serv.IsPrestamoCancelado(ref p);
 
                     PRESTAMO = p;
 
@@ -82,8 +81,8 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaPrestamo lp = new LogicaPrestamo();
-                lp.CancelarPrestamo(PRESTAMO);
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                serv.CancelarPrestamo(PRESTAMO);
 
                 lblInfo.Text = "El prestamo fue cancelado.";
                 btnAceptar.Visible = false;

@@ -1,8 +1,7 @@
 ﻿using System.Windows.Forms;
 using System;
-using Logica;
-using Entidades;
-using ExcepcionesPersonalizadas;
+using GestionBancariaWindows.GestionBancariaWS;
+
 using System.Collections.Generic;
 
 namespace GestionBancariaWindows
@@ -24,8 +23,8 @@ namespace GestionBancariaWindows
                 lblInfo.Text = "";
 
 
-                LogicaSucursal lu = new LogicaSucursal();
-                List<Sucursal> sucursales = lu.ListarSucursales();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Sucursal[] sucursales = serv.ListarSucursales();
 
                 foreach (Sucursal s in sucursales)
                 {
@@ -45,10 +44,10 @@ namespace GestionBancariaWindows
                 int numPrestamo;
                 if (Int32.TryParse(txtNumPrestamo.Text, out numPrestamo))
                 {
-                    LogicaPrestamo lu = new LogicaPrestamo();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     Prestamo p = new Prestamo { IDPRESTAMO = numPrestamo };
 
-                    p = (Prestamo)lu.BuscarPrestamo(p);
+                    p = (Prestamo)serv.BuscarPrestamo(p);
                     if (p != null)
                     {
                         txtCliente.Text = p.CLIENTE.NOMBRE + " " + p.CLIENTE.APELLIDO;
@@ -92,9 +91,9 @@ namespace GestionBancariaWindows
             {
                 if (this.ValidateChildren(ValidationConstraints.Enabled))
                 {
-                    LogicaPagos lp = new LogicaPagos();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
 
-                    lp.PagarCuota(PRESTAMO);
+                    serv.PagarCuota(PRESTAMO);
 
                     lblInfo.Text = "Cuota pagada correctamente";
                     LimpiarFormulario();

@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using ExcepcionesPersonalizadas;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -47,8 +46,8 @@ namespace GestionBancariaWindows
                     m.USUARIO = EMPLEADO;
                     m.VIAWEB = false;
 
-                    LogicaCuentas lc = new LogicaCuentas();
-                    lc.RealizarMovimiento(m);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.RealizarMovimiento(m);
 
                     lblInfo.Text = "Retiro realizado correctamente.";
                     LimpiarFormulario();
@@ -93,17 +92,17 @@ namespace GestionBancariaWindows
                     int ci;
                     if (Int32.TryParse(txtCedula.Text, out ci))
                     {
-                        LogicaUsuarios lu = new LogicaUsuarios();
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
                         Cliente c = new Cliente { CI = ci };
 
-                        c = (Cliente)lu.BuscarUsuarioPorCi(c);
+                        c = (Cliente)serv.BuscarUsuarioPorCi(c);
                         if (c != null)
                         {
                             CLIENTE = c;
                             txtNombre.Text = c.NOMBRE + " " + c.APELLIDO;
-                            LogicaCuentas lc = new LogicaCuentas();
-                            List<Cuenta> cuentasCliente = lc.ListarCuentasCliente(c);
-                            if (cuentasCliente != null && cuentasCliente.Count > 0)
+                            ServiceGestionBancaria serv1 = new ServiceGestionBancaria();
+                            Cuenta[] cuentasCliente = serv1.ListarCuentasCliente(c);
+                            if (cuentasCliente != null && cuentasCliente.Count() > 0)
                             {
                                 CuentasbindingSource.DataSource = cuentasCliente;
                                 cmbCuentas.DataSource = CuentasbindingSource;

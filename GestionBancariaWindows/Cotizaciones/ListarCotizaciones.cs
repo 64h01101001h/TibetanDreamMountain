@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
-using Logica;
-using Entidades;
+using GestionBancariaWindows.GestionBancariaWS;
+
 using System.Collections.Generic;
 using System;
 
@@ -23,8 +23,9 @@ namespace GestionBancariaWindows
         {
             try
             {
-                LogicaCotizacion lu = new LogicaCotizacion();
-                List<Cotizacion> cotizaciones = lu.ListarCotizaciones();
+                //LogicaCotizacion lu = new LogicaCotizacion();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cotizacion[] cotizaciones = serv.ListarCotizaciones();
 
                 CotizacionbindingSource.DataSource = cotizaciones;
                 lvCotizaciones.DataSource = CotizacionbindingSource;
@@ -55,8 +56,8 @@ namespace GestionBancariaWindows
             {
                 lvCotizaciones.Rows.Clear();
 
-                LogicaCotizacion lu = new LogicaCotizacion();
-                List<Cotizacion> cotizaciones = lu.ListarCotizaciones();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cotizacion[] cotizaciones = serv.ListarCotizaciones();
 
                 CotizacionbindingSource.DataSource = cotizaciones;
                 lvCotizaciones.DataSource = CotizacionbindingSource;
@@ -79,11 +80,10 @@ namespace GestionBancariaWindows
                     if (!String.IsNullOrEmpty(Convert.ToString(lvCotizaciones.Rows[e.RowIndex].Cells[0].Value)))
                     {
                         DateTime dt = Convert.ToDateTime(lvCotizaciones.Rows[e.RowIndex].Cells[0].Value);
-                        LogicaCotizacion lu = new LogicaCotizacion();
-
+                        ServiceGestionBancaria serv = new ServiceGestionBancaria();
                         Cotizacion cot = new Cotizacion{ FECHA =  dt};
 
-                        cot = (Cotizacion)lu.BuscarCotizacion(cot);
+                        cot = (Cotizacion)serv.BuscarCotizacion(cot);
                         NuevaCotizacion nu = new NuevaCotizacion { COTIZACION = cot };
 
                         nu.Show();

@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades;
-using ExcepcionesPersonalizadas;
-using Logica;
+using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -27,8 +26,8 @@ namespace GestionBancariaWindows
             {
                 //CARGAMOS LA INFORMACION DE CLEINTES EXISTENTES
                 //---------------------------------------------
-                LogicaUsuarios lc = new LogicaUsuarios();
-                List<Cliente> clientes = lc.ListarClientes();
+                ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                Cliente[] clientes = serv.ListarClientes();
 
                 foreach (Cliente c in clientes)
                 {
@@ -68,8 +67,8 @@ namespace GestionBancariaWindows
             {
                 if (MessageBox.Show("Esta seguro de eliminar la cuenta " + CUENTA.IDCUENTA, "Eliminar Cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    LogicaCuentas lc = new LogicaCuentas();
-                    lc.EliminarCuenta(CUENTA);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.EliminarCuenta(CUENTA);
 
                     lblInfo.Text = "Cuenta eliminada correctamente";
                     LimpiarFormulario();
@@ -113,15 +112,15 @@ namespace GestionBancariaWindows
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
-                    LogicaCuentas lc = new LogicaCuentas();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     if (editar)
                     {
-                        lc.ActualizarCuenta(CUENTA);
+                        serv.ActualizarCuenta(CUENTA);
                         lblInfo.Text = "Cuenta actualizada correctamente";
                     }
                     else
                     {
-                        lc.AltaCuenta(CUENTA);
+                        serv.AltaCuenta(CUENTA);
                         lblInfo.Text = "Cuenta ingresada correctamente";
 
                         //LIMPIAMOS EL FORMULARIO
