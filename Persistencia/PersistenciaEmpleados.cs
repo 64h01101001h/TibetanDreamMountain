@@ -201,8 +201,8 @@ namespace Persistencia
                 conexion.Open();
                 cmd.ExecuteNonQuery();
                 _Reader = cmd.ExecuteReader();
-                int _ci;
-                string _nombreUsuario, _nombre, _apellido, _pass;
+                int _ci,_idSucursal;
+                string _nombreUsuario, _nombre, _apellido, _pass, _nombreSucursal ;
                 bool _activo;
 
                 while (_Reader.Read())
@@ -213,7 +213,8 @@ namespace Persistencia
                     _apellido = (string)_Reader["Apellido"];
                     _pass = (string)_Reader["Pass"];
                     _activo = (bool)_Reader["Activo"];
-
+                    _nombreSucursal = (string)_Reader["NombreSucursal"];
+                    _idSucursal = (int)_Reader["IdSucursal"];
                     Empleado e = new Empleado
                     {
                         CI = _ci,
@@ -222,7 +223,7 @@ namespace Persistencia
                         NOMBRE = _nombre,
                         APELLIDO = _apellido,
                         ACTIVO = _activo,
-
+                        SUCURSAL = new Sucursal {IDSUCURSAL = _idSucursal,NOMBRE = _nombreSucursal }
                     };
 
                     _listaEmpleados.Add(e);

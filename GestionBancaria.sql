@@ -683,7 +683,9 @@ create proc spListarEmpleado
 @Activo bit
 as
 begin
-	select * from Empleado inner join Usuario on Usuario.Ci=Empleado.IdUsuario and Activo=@Activo
+	select Usuario.*, Sucursal.Nombre as NombreSucursal, Sucursal.IdSucursal from Usuario inner join Empleado on Empleado.IdUsuario =Usuario.Ci 
+	inner join Sucursal on Sucursal.IdSucursal = Empleado.IdSucursal
+	where  Activo=@Activo
 end
 GO
 
