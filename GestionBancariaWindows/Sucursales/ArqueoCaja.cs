@@ -30,7 +30,7 @@ namespace GestionBancariaWindows
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 decimal saldoCajaDolares = Decimal.Zero, saldoCajaPesos = Decimal.Zero;
                 int cantTotalDepositos = 0, cantTotalPagos = 0, cantTotalRetiros = 0;
-                ls.ArqueoCaja(EMPLEADO, ref saldoCajaDolares, ref saldoCajaPesos, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);
+                serv.ArqueoCaja(EMPLEADO, ref saldoCajaDolares, ref saldoCajaPesos, ref cantTotalDepositos, ref cantTotalRetiros, ref cantTotalPagos);
 
                 txtCantidadCuotasPrestamos.Text = Convert.ToString(cantTotalPagos);
                 txtCantidadDepositos.Text = Convert.ToString(cantTotalDepositos);

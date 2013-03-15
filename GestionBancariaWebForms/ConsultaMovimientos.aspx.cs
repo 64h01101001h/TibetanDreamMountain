@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.XPath;
 using System.Xml;
-using ExcepcionesPersonalizadas;
 using GestionBancariaWS;
 
 public partial class ConsultaMovimientos : System.Web.UI.Page

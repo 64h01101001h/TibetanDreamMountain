@@ -293,20 +293,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{ADCDD125-1B3A-4F63-AA9D-936983889A1B}</Project>
-      <Name>Entidades</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExcepcionesPersonalizadas\ExcepcionesPersonalizadas.csproj">
-      <Project>{B188EAE8-5882-4E0D-BD33-C22332E164BF}</Project>
-      <Name>ExcepcionesPersonalizadas</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logica\Logica.csproj">
-      <Project>{A9672D4B-2190-4037-B4DC-7AC5D8B3627A}</Project>
-      <Name>Logica</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>

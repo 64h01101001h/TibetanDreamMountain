@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ExcepcionesPersonalizadas;
 using GestionBancariaWS;
+
 
 
 public partial class Datos : System.Web.UI.Page

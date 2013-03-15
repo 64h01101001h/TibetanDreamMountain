@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-//using Entidades;
-//using ExcepcionesPersonalizadas;
-//using Logica;
-//using Logica;
-//using Entidades;
 using GestionBancariaWindows.GestionBancariaWS;
+
 
 namespace GestionBancariaWindows
 {
@@ -97,20 +93,20 @@ namespace GestionBancariaWindows
                     //---------
                     if (!String.IsNullOrEmpty(txtTelefonos.Text))
                     {
-                        CLIENTE.TELEFONOS = txtTelefonos.Text.Split(',').ToList();
+                        CLIENTE.TELEFONOS = txtTelefonos.Text.Split(',').ToArray();
                     }
 
                     //GUARDAMOS LA INFORMACION EN LA BASE DE DATOS
                     //---------------------------------------------
-                    LogicaUsuarios lu = new LogicaUsuarios();
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
                     if (editar)
                     {
-                        lu.ActualizarUsuario(CLIENTE);
+                        serv.ActualizarUsuario(CLIENTE);
                         lblInfo.Text = "Cliente actualizado correctamente";
                     }
                     else
                     {
-                        lu.AltaUsuario(CLIENTE);
+                        serv.AltaUsuario(CLIENTE);
 
                         lblInfo.Text = "Cliente ingresado correctamente";
                         //LIMPIAMOS EL FORMULARIO
@@ -255,8 +251,8 @@ namespace GestionBancariaWindows
             {
                 if (MessageBox.Show("Esta seguro de eliminar el cliente " + CLIENTE.NOMBRE + " " + CLIENTE.APELLIDO, "Eliminar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    LogicaUsuarios lu = new LogicaUsuarios();
-                    lu.EliminarUsuario(CLIENTE);
+                    ServiceGestionBancaria serv = new ServiceGestionBancaria();
+                    serv.EliminarUsuario(CLIENTE);
                     lblInfo.Text = "Cliente eliminado correctamente";
                     LimpiarFormulario();
                     btnGuardar.Text = "Guardar";

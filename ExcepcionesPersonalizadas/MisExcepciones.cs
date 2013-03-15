@@ -3,14 +3,14 @@ using System.Runtime.Serialization;
 
 namespace ExcepcionesPersonalizadas
 {
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class MisExcepciones : Exception
     {
 
     }
 
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class ErrorGeneral : Exception
     {
         public ErrorGeneral()
@@ -32,7 +32,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class ErrorBaseDeDatos : Exception
     {
         public ErrorBaseDeDatos()
@@ -55,7 +55,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class ErrorDocumentoInvalido : Exception
     {
         public ErrorDocumentoInvalido()
@@ -78,7 +78,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class ErrorUsuarioYaExiste : Exception
     {
         public ErrorUsuarioYaExiste()
@@ -101,7 +101,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable] 
     public class ErrorUsuarioNoExiste : Exception
     {
         public ErrorUsuarioNoExiste()
@@ -124,7 +124,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable]
     public class ErrorNoHayUsuarios : Exception
     {
         public ErrorNoHayUsuarios()
@@ -147,7 +147,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    //[Serializable] DESCOMENTAR CUANDO SE USE WEB SERVICE
+    [Serializable]
     public class ErrorVaciarCuenta : Exception
     {
         public ErrorVaciarCuenta()
@@ -172,7 +172,7 @@ namespace ExcepcionesPersonalizadas
 
     /*ErrorCotizacionYaExiste*/
 
-    //[Serializable]
+    [Serializable]
     public class ErrorCotizacionYaExiste : Exception
     {
         public ErrorCotizacionYaExiste()
@@ -195,7 +195,7 @@ namespace ExcepcionesPersonalizadas
 
     }
 
-    /*ErrorNoExisteCotizacion*/
+    [Serializable]
     public class ErrorNoExisteCotizacion : Exception
     {
         public ErrorNoExisteCotizacion()
@@ -217,7 +217,7 @@ namespace ExcepcionesPersonalizadas
         }
 
     }
-
+     [Serializable]
     public class ErrorSucursalNoExiste: Exception
     {
         public ErrorSucursalNoExiste()
@@ -239,7 +239,7 @@ namespace ExcepcionesPersonalizadas
         }
 
     }
-
+     [Serializable]
     public class ErrorSaldoInsuficienteParaRetiro : Exception
     {
         public ErrorSaldoInsuficienteParaRetiro()
@@ -261,7 +261,7 @@ namespace ExcepcionesPersonalizadas
         }
 
     }
-
+     [Serializable]
     public class ErrorPasswordActualNoValido : Exception
     {
         public ErrorPasswordActualNoValido()
