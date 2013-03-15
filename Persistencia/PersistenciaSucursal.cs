@@ -9,7 +9,7 @@ using ExcepcionesPersonalizadas;
 
 namespace Persistencia
 {
-    internal class PersistenciaSucursal: IPersistenciaSucursal
+    internal class PersistenciaSucursal : IPersistenciaSucursal
     {
         private static PersistenciaSucursal _instancia = null;
 
@@ -149,7 +149,7 @@ namespace Persistencia
                     _idSucursal = (int)_Reader["IdSucursal"];
                     _nombre = (string)_Reader["Nombre"];
                     _direccion = (string)_Reader["Direccion"];
-                    _activa = (bool)_Reader["Activa"]; 
+                    _activa = (bool)_Reader["Activa"];
 
                     Sucursal s = new Sucursal
                     {
@@ -204,9 +204,9 @@ namespace Persistencia
                     _nombre = (string)_Reader["Nombre"];
                     _direccion = (string)_Reader["Direccion"];
                     if (_Reader["CantCuentasAbiertas"] != DBNull.Value)
-                    _cantidadCuentas = Convert.ToInt32(_Reader["CantCuentasAbiertas"]);
+                        _cantidadCuentas = Convert.ToInt32(_Reader["CantCuentasAbiertas"]);
                     if (_Reader["CantPrestamosOtorgados"] != DBNull.Value)
-                    _cantidadPrestamos = Convert.ToInt32(_Reader["CantPrestamosOtorgados"]);
+                        _cantidadPrestamos = Convert.ToInt32(_Reader["CantPrestamosOtorgados"]);
 
 
                     Sucursal s = new Sucursal
@@ -241,7 +241,7 @@ namespace Persistencia
 
             SqlParameter _Empleado = new SqlParameter("@IdEmpleado", E.CI);
             SqlParameter _IdSucursal = new SqlParameter("@IdSucursal", E.SUCURSAL.IDSUCURSAL);
-            SqlParameter _CantTotalDepositos = new SqlParameter("@CantTotalDepositos",ParameterDirection.Output);
+            SqlParameter _CantTotalDepositos = new SqlParameter("@CantTotalDepositos", ParameterDirection.Output);
             SqlParameter _CantTotalRetiros = new SqlParameter("@CantTotalRetiros", ParameterDirection.Output);
             SqlParameter _CantTotalPagos = new SqlParameter("@CantTotalPagos", ParameterDirection.Output);
 
@@ -256,12 +256,20 @@ namespace Persistencia
 
             try
             {
+                cantTotalDepositos = 0;
+                cantTotalPagos = 0;
+                cantTotalRetiros = 0;
+
                 conexion.Open();
                 cmd.ExecuteNonQuery();
 
-                cantTotalDepositos = Convert.ToInt32(_CantTotalDepositos.Value);
-                cantTotalPagos = Convert.ToInt32(_CantTotalPagos.Value);
-                cantTotalRetiros = Convert.ToInt32(_CantTotalRetiros.Value);
+                if (_CantTotalDepositos.Value != DBNull.Value)
+                    cantTotalDepositos = Convert.ToInt32(_CantTotalDepositos.Value);
+                
+                if (_CantTotalPagos.Value != DBNull.Value)
+                    cantTotalPagos = Convert.ToInt32(_CantTotalPagos.Value);
+                if (_CantTotalRetiros.Value != DBNull.Value)
+                    cantTotalRetiros = Convert.ToInt32(_CantTotalRetiros.Value);
             }
             catch (Exception ex)
             {
@@ -309,7 +317,7 @@ namespace Persistencia
             {
                 conexion.Close();
             }
-        
+
         }
 
         public Sucursal BuscarSucursal(Sucursal sucursal)
