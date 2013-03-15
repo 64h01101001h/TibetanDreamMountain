@@ -37,6 +37,7 @@
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblFechaInicio = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lvSucursales = new System.Windows.Forms.DataGridView();
@@ -45,7 +46,6 @@
             this.CantCuentasCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrestamosCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SucursalbindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblInfo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -130,6 +130,14 @@
             this.panel2.Size = new System.Drawing.Size(622, 38);
             this.panel2.TabIndex = 1;
             // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(13, 7);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblInfo.TabIndex = 1;
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Dock = System.Windows.Forms.DockStyle.Right;
@@ -200,15 +208,7 @@
             // 
             // SucursalbindingSource
             // 
-            this.SucursalbindingSource.DataSource = typeof(GestionBancariaWS.Sucursal);
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(13, 7);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(0, 13);
-            this.lblInfo.TabIndex = 1;
+            this.SucursalbindingSource.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Sucursal);
             // 
             // ListadoProductividad
             // 
@@ -220,6 +220,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ListadoProductividad";
             this.Text = "Listado Productividad";
+            this.Load += new System.EventHandler(this.ListadoProductividad_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

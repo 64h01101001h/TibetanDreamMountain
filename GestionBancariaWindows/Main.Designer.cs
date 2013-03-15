@@ -53,6 +53,7 @@
             this.arqueoDeCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoDeProductividadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarSucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,8 @@
             this.empleadosToolStripMenuItem,
             this.cotizacionesToolStripMenuItem,
             this.prestamosToolStripMenuItem,
-            this.sucursalesToolStripMenuItem});
+            this.sucursalesToolStripMenuItem,
+            this.logOutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(614, 24);
@@ -257,6 +259,13 @@
             this.listarSucursalesToolStripMenuItem.Text = "Listar Sucursales";
             this.listarSucursalesToolStripMenuItem.Click += new System.EventHandler(this.listarSucursalesToolStripMenuItem_Click);
             // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.logOutToolStripMenuItem.Text = "LogOut";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +311,7 @@
         private System.Windows.Forms.ToolStripMenuItem listarEmpleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarCotizacionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarSucursalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
     }
 }
 

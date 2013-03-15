@@ -17,8 +17,8 @@ namespace GestionBancariaWindows
             //******************************************************
             //SOLO A EFECTOS DE TESTING. ELIMINAR ESTAS LINEAS LUEGO
             //------------------------------------------------------
-            txtNombreUsuario.Text = "ElGaucho";
-            txtPassword.Text = "1234";
+            txtNombreUsuario.Text = "";
+            txtPassword.Text = "";
         }
 
         private void btnLoguearse_Click(object sender, EventArgs e)

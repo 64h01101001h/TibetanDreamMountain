@@ -58,8 +58,7 @@ namespace GestionBancariaWindows
 
         private void nuevoEmpleadoToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            NuevoEmpleado nuevoEmpleado = new NuevoEmpleado();
-            nuevoEmpleado.Show();
+            NuevoEmpleado nuevoEmpleado = new NuevoEmpleado();            nuevoEmpleado.Show();
         }
 
         private void listarEmpleadosToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -83,6 +82,7 @@ namespace GestionBancariaWindows
         private void nuevoPrestamoToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             NuevoPrestamo nuevoPrestamoForm = new NuevoPrestamo();
+            nuevoPrestamoForm.EMPLEADO = EMPLEADO;
             nuevoPrestamoForm.Show();
         }
 
@@ -122,6 +122,14 @@ namespace GestionBancariaWindows
         {
             ListarSucursales ls = new ListarSucursales();
             ls.Show();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            this.Hide();
+            Inicio inicioForm = new Inicio();
+            inicioForm.ShowDialog();
+            this.Close();
         }
 
        

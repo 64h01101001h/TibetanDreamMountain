@@ -5,7 +5,7 @@
     <!--Creo una etiqueta HTML DIV para poder colocar texto dentro de la pagina-->
     <div style="width:100%;margin:auto">
       <table>
-        <tr cellpadding="5px" cellspacing="0px" width="100%" style="background-color:Blue;color:White;width:400px ">
+        <tr cellpadding="5px" cellspacing="0px" width="100%" style="background-color:Orange;color:White;width:400px ">
           <td>Num Movimiento</td>
           <td>Fecha</td>
           <td>Moneda</td>
@@ -14,7 +14,7 @@
         <!--Determino como quiero desplegar cada nodo -->
         <xsl:for-each select="raiz/Cuenta" >
           <xsl:sort order="ascending" select="Fecha"/>
-          <tr style="background-color:Yellow;color:Black" >
+          <tr style="background-color:Pink;color:Black" >
             <td>
               <xsl:value-of select="NumeroMovimiento"/>
             </td>

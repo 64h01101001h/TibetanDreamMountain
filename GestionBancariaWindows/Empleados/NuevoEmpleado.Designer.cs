@@ -141,11 +141,13 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(680, 269);
             this.panel3.TabIndex = 2;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // ddlSucursales
             // 
             this.ddlSucursales.DataSource = this.bindingSource1;
             this.ddlSucursales.DisplayMember = "NOMBRE";
+            this.ddlSucursales.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlSucursales.FormattingEnabled = true;
             this.ddlSucursales.Location = new System.Drawing.Point(124, 100);
             this.ddlSucursales.Name = "ddlSucursales";
@@ -155,7 +157,7 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(GestionBancariaWS.Sucursal);
+            this.bindingSource1.DataSource = typeof(GestionBancariaWindows.GestionBancariaWS.Sucursal);
             // 
             // lblSucursal
             // 

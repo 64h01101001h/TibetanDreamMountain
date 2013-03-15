@@ -22,7 +22,7 @@
             <tr>
                 <td style="background-image: url('/Images/Tope2.jpg'); width: 800px; height: 100px">
                     <div style="float: right">
-                        <asp:Image runat="server" Width="110px" Height="100px" ID="imgUser" />
+                       <%-- <asp:Image runat="server" Width="110px" Height="100px" ID="imgUser" />--%>
                     </div>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
                                 <asp:MenuItem ImageUrl="~/Images/1362297285_arrows_blue.png" 
                                     NavigateUrl="~/ConsultaMovimientos.aspx" Text="Movimientos" Value="Movimientos">
                                 </asp:MenuItem>
-                                <asp:MenuItem ImageUrl="\Images\1362297148_table_money.png" 
+                                <asp:MenuItem ImageUrl="~/Images/1362297148_table_money.png" 
                                     NavigateUrl="~/ConsultaSaldo.aspx" Text="Saldo" Value="Saldo">
                                 </asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Transferencia.aspx" 

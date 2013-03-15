@@ -113,6 +113,7 @@ namespace GestionBancariaWindows
                         lblInfo.Text = "Empleado ingresado correctamente";
                         //LIMPIAMOS EL FORMULARIO
                         LimpiarFormulario();
+                        EMPLEADO = null;
                     }
                 }
             }
@@ -126,7 +127,6 @@ namespace GestionBancariaWindows
             }
             catch (Exception ex)
             {
-
                 lblInfo.Text = ex.Message;
             }
         }
@@ -264,6 +264,11 @@ namespace GestionBancariaWindows
             {
                 lblInfo.Text = ex.Message;
             }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         

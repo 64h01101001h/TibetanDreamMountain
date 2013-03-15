@@ -23,7 +23,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvSucursales.Rows.Clear();
+                //lvSucursales.Rows.Clear();
 
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 Sucursal[] listadoComparativo = serv.ListadoProductividadComparativo(dtpFechaInicio.Value,dtpFechaFin.Value);
@@ -41,6 +41,11 @@ namespace GestionBancariaWindows
         {
             Close();
             Dispose();
+        }
+
+        private void ListadoProductividad_Load(object sender, EventArgs e)
+        {
+            dtpFechaInicio.Value = DateTime.Now.AddMonths(-1);
         }
 
     }

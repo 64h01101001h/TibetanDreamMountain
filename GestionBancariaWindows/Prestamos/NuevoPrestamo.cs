@@ -20,7 +20,7 @@ namespace GestionBancariaWindows
         }
 
         //public Prestamo PRESTAMO { get; set; }
-
+        public Empleado EMPLEADO { get; set; }
 
 
         private void NuevoPrestamo_Load(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace GestionBancariaWindows
                     PRESTAMO.FECHAEMITIDO = dtpFecha.Value;
                     PRESTAMO.MONEDA = cmbMonedaRetiro.Text;
                     PRESTAMO.MONTO = Convert.ToDecimal(txtMonto.Text);
-                    PRESTAMO.SUCURSAL.IDSUCURSAL = 1; //** AQUI VA LA SUCURSAL DEL USUARIO LOGUEADO.
+                    PRESTAMO.SUCURSAL.IDSUCURSAL = EMPLEADO.SUCURSAL.IDSUCURSAL; //** AQUI VA LA SUCURSAL DEL USUARIO LOGUEADO.
                     PRESTAMO.TOTALCUOTAS = Convert.ToInt32(numericCuotas.Value);
 
 
