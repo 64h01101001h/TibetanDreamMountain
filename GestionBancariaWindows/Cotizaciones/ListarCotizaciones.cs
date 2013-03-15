@@ -54,7 +54,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvCotizaciones.Rows.Clear();
+                //lvCotizaciones.Rows.Clear();
 
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 Cotizacion[] cotizaciones = serv.ListarCotizaciones();

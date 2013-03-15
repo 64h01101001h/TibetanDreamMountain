@@ -71,7 +71,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvCuentas.Rows.Clear();
+                //lvCuentas.Rows.Clear();
 
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 Cuenta[] cuentas = serv.ListarCuentas();

@@ -97,7 +97,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvClientes.Rows.Clear();
+                //lvClientes.Rows.Clear();
 
                 //LogicaUsuarios lu = new LogicaUsuarios();
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();

@@ -74,7 +74,7 @@ namespace GestionBancariaWindows
         {
             try
             {
-                lvEmpleados.Rows.Clear();
+                //lvEmpleados.Rows.Clear();
 
                 ServiceGestionBancaria serv = new ServiceGestionBancaria();
                 Empleado[] empleados = serv.ListarEmpleados();
