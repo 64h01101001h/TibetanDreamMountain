@@ -9,7 +9,7 @@ using ExcepcionesPersonalizadas;
 
 namespace Persistencia
 {
-    internal class PersistenciaSucursal : IPersistenciaSucursal
+    internal class PersistenciaSucursal : MarshalByRefObject, IPersistenciaSucursal
     {
         private static PersistenciaSucursal _instancia = null;
 

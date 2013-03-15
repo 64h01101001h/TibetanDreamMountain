@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    internal class PersistenciaEmpleados: IPersistenciaEmpleados
+    internal class PersistenciaEmpleados : MarshalByRefObject, IPersistenciaEmpleados
     {
         private static PersistenciaEmpleados _instancia = null;
 

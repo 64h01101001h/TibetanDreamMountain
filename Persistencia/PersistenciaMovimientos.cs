@@ -11,7 +11,7 @@ using System.Data;
 namespace Persistencia
 {
 
-    internal class PersistenciaMovimientos : IPersistenciaMovimientos
+    internal class PersistenciaMovimientos : MarshalByRefObject, IPersistenciaMovimientos
     {
         private static PersistenciaMovimientos _instancia = null;
 

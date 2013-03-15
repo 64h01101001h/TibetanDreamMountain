@@ -12,7 +12,7 @@ namespace Persistencia
 {
 
 
-    internal class PersistenciaCuentas: IPersistenciaCuentas
+    internal class PersistenciaCuentas : MarshalByRefObject, IPersistenciaCuentas
     {
 
         private static PersistenciaCuentas _instancia = null;

@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Persistencia
 {
-    internal class PersistenciaPagos : IPersistenciaPagos
+    internal class PersistenciaPagos : MarshalByRefObject, IPersistenciaPagos
     {
         private static PersistenciaPagos _instancia = null;
 

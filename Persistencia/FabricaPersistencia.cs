@@ -7,42 +7,42 @@ namespace Persistencia
     {
 
        
-        public static IPersistenciaClientes getPersistenciaClientes()
+        public IPersistenciaClientes getPersistenciaClientes()
         {
             return (PersistenciaClientes.GetInstancia());
         }
 
-        public static IPersistenciaCotizacion getPersistenciaCotizacion()
+        public IPersistenciaCotizacion getPersistenciaCotizacion()
         {
             return (PersistenciaCotizacion.GetInstancia());
         }
 
-        public static IPersistenciaCuentas getPersistenciaCuentas()
+        public IPersistenciaCuentas getPersistenciaCuentas()
         {
             return (PersistenciaCuentas.GetInstancia());
         }
 
-        public static IPersistenciaEmpleados getPersistenciaEmpleados()
+        public IPersistenciaEmpleados getPersistenciaEmpleados()
         {
             return (PersistenciaEmpleados.GetInstancia());
         }
 
-        public static IPersistenciaMovimientos getPersistenciaMovimientos()
+        public IPersistenciaMovimientos getPersistenciaMovimientos()
         {
             return (PersistenciaMovimientos.GetInstancia());
         }
 
-        public static IPersistenciaPagos getPersistenciaPagos()
+        public IPersistenciaPagos getPersistenciaPagos()
         {
             return (PersistenciaPagos.GetInstancia());
         }
 
-        public static IPersistenciaPrestamo getPersistenciaPrestamo()
+        public IPersistenciaPrestamo getPersistenciaPrestamo()
         {
             return (PersistenciaPrestamo.GetInstancia());
         }
 
-        public static IPersistenciaSucursal getPersistenciaSucursal()
+        public IPersistenciaSucursal getPersistenciaSucursal()
         {
             return (PersistenciaSucursal.GetInstancia());
         }

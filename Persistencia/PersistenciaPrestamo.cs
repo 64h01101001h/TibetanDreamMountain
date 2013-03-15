@@ -10,7 +10,7 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    internal class PersistenciaPrestamo : IPersistenciaPrestamo
+    internal class PersistenciaPrestamo : MarshalByRefObject, IPersistenciaPrestamo
     {
         private static PersistenciaPrestamo _instancia = null;
 

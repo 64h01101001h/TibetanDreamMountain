@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace Persistencia
 {
-    internal class PersistenciaClientes : IPersistenciaClientes
+    internal class PersistenciaClientes : MarshalByRefObject,IPersistenciaClientes
     {
 
 
